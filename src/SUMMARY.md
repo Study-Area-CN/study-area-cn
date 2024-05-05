@@ -1,3 +1,3 @@
 # Summary
 
-- [前言](./intro.md)
+[前言](./intro.md)
