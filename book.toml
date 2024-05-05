@@ -1,0 +1,6 @@
+[book]
+authors = ["hmtsai"]
+language = "en"
+multilingual = false
+src = "src"
+title = "Study Area CN"
