@@ -16,5 +16,5 @@
 1. fork本项目。
 2. 新建feat_xxx分支。
 3. 修改。
-4. 新建feat_xxx分支到主仓库develop分支的PR。
+4. 新建feat_xxx分支到主仓库main分支的PR。
 5. 等待合并。
