@@ -1,6 +1,6 @@
 [book]
-authors = ["hmtsai"]
-language = "en"
+authors = ["hmtsai","sutdy-area-cn-developers"]
+language = "cn"
 multilingual = false
 src = "src"
 title = "Study Area CN"
