@@ -21,5 +21,6 @@
 那么，我们要如何交这朋友呢？慢慢来，由基础开始。继续看下面的文章相信对您有所帮助。
 
 ---
-> 编写：netman</br>
-> 翻译&修改：Hmtsai
+> 原文: [netman](http://www.study-area.org/compu/compu_defi.htm)</br>
+> 翻译: Hmtsai</br>
+> study-area-cn
