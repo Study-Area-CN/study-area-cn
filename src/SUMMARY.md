@@ -3,8 +3,15 @@
 [前言](./intro.md)
 
 [贡献者名单](./contributors.md)
+
 [协议与约定](./conventions.md)
 
+# Licenses
+
+[MIT](./licenses/LICENSE-MIT
+md)
+
+[Apache](./licenses/LICENSE-APACHE.md)
 # 学习电脑
 - [何为电脑](./learn_computer_basic/what_is_computer.md)
 - [输入 & 输出](./learn_computer_basic/input_and_output.md)
