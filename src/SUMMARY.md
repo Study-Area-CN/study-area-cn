@@ -8,10 +8,10 @@
 
 # Licenses
 
-[MIT](./licenses/LICENSE-MIT
+- [MIT License](./licenses/LICENSE-MIT
 md)
+- [Apache License](./licenses/LICENSE-APACHE.md)
 
-[Apache](./licenses/LICENSE-APACHE.md)
 # 学习电脑
 - [何为电脑](./learn_computer_basic/what_is_computer.md)
 - [输入 & 输出](./learn_computer_basic/input_and_output.md)
