@@ -8,8 +8,7 @@
 
 # Licenses
 
-- [MIT License](./licenses/LICENSE-MIT
-md)
+- [MIT License](./licenses/LICENSE-MIT.md)
 - [Apache License](./licenses/LICENSE-APACHE.md)
 
 # 学习电脑
