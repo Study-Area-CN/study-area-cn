@@ -6,8 +6,8 @@
 
 [协议与约定](./conventions.md)
 
-- [Licenses/1. MIT License](./licenses/LICENSE-MIT.md)
-- [Licenses/2. Apache License](./licenses/LICENSE-APACHE.md)
+- [Licenses/MIT License](./licenses/LICENSE-MIT.md)
+- [Licenses/Apache License](./licenses/LICENSE-APACHE.md)
 
 # 学习电脑
 - [何为电脑](./learn_computer_basic/what_is_computer.md)
