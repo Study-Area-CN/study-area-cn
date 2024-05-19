@@ -29,7 +29,7 @@ jobs:
           echo "Check..."
           ls study-area-action-deps
       - name: Add permission
-        run: chmod +x study-area-action-deps/mdbook-linux-arm
+        run: chmod +x study-area-action-deps/mdbook-linux-$(uname -m)
       - name: Build mdbook
         run: study-area-action-deps/mdbook-linux-$(uname -m) build
       - name: Check book
