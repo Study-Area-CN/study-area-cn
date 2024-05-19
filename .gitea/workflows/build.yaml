@@ -31,7 +31,7 @@ jobs:
       - name: Add permission
         run: chmod +x study-area-action-deps/mdbook-linux-arm
       - name: Build mdbook
-        run: study-area-action-deps/mdbook-linux-arm build
+        run: study-area-action-deps/mdbook-linux-$(uname -m) build
       - name: Check book
         run: ls book
       - name: Upload
