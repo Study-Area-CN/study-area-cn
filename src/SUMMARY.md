@@ -18,8 +18,4 @@
 - [存储设备](./learn_computer_basic/storage_device.md)
 - [主板](./learn_computer_basic/motherboard.md)
 - [操作系统](./learn_computer_basic/operating_system.md)
-- [文件系统]()
-- [中文输入]()
-- [电脑安装 DIY]()
-- [维护与注意事项]()
 - [附录]()
