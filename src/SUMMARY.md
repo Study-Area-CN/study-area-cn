@@ -18,4 +18,9 @@
 - [存储设备](./learn_computer_basic/storage_device.md)
 - [主板](./learn_computer_basic/motherboard.md)
 - [操作系统](./learn_computer_basic/operating_system.md)
-- [附录]()
+
+# 学习Linux基础
+- [什么是Linux](./learn_linux_basic/what_is_linux.md)
+- [Linux的发展历程]()
+- [Linux发行版]()
+- [Rocky Linux初见]()
