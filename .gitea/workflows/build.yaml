@@ -23,7 +23,17 @@ jobs:
           apt-get install lftp -y
       - name: Checkout
         uses: https://git.hmtsai.cn/actions/checkout@v4
+      - name: Cache mdbook
+        uses: https://git.hmtsai.cn/actions/cache@v4
+        id: cache-mdbook
+        env:
+          cache-name: cache-mdbook
+        with:
+          key: ${{ runner.os }}-mdbook
+          path: |
+            study-area-action-deps
       - name: Get file
+        if: ${{ steps.cache-mdbook.outputs.cache-hit != 'true' }}
         run: |
           git clone https://git.hmtsai.cn/cxykevin/study-area-action-deps
           echo "Check..."
