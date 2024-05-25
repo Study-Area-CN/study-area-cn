@@ -20,7 +20,7 @@
 - [操作系统](./learn_computer_basic/operating_system.md)
 
 # 学习Linux基础
-- [什么是Linux](./learn_linux_basic/what_is_linux.md)
+- [漫谈Linux学习之路](./learn_linux_basic/the_linux_learning_path.md)
 - [Linux的发展历程]()
 - [Linux发行版]()
 - [Rocky Linux初见]()
