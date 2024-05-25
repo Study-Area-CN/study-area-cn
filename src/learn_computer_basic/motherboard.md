@@ -47,7 +47,7 @@ PCIe分为好几个版本，还有x1，x4等通道之分，一般来说，版本
 
 在电脑刚刚启动的时候，BIOS一定比操作系统先工作起来，顾名思义，BIOS管理的就是电脑最基本的IO设备了。包括系统日期、显示模式、硬盘类型、系统启动顺序,以及一些内存的设置。如果这些东西设置不正确的话，你的电脑极有可能没办法启动操作系统或者十分不稳定。BIOS的作用就是将不标准的硬件设备整合，提供一个标准的接口给系统使用。
 
-現在的 BIOS 還多了一些 Nvme、APM (Advanced Power Management)、以及 PCIe拆分 等較新的設定。
+现在的 BIOS 还多了一些 Nvme、APM (Advanced Power Management，高级电源管理)，以及 PCIe 拆分等较新的功能。
 
 今天我们的BIOS基本都是主板厂商深度定制的产品了，而且还有了UEFI的支持，以前传统的BIOS现在叫做 Legacy BIOS，现在的基本都是UEFI BIOS了。
 
@@ -63,3 +63,8 @@ PCIe分为好几个版本，还有x1，x4等通道之分，一般来说，版本
 
 
 好了，现在您应该也对主板有了一个大致的了解了，接下来就让我们来学习 **操作系统** 的知识吧！
+
+---
+> 原文: [netman](http://www.study-area.org/compu/compu_mb.htm)</br>
+> 翻译: hmtsai</br>
+> study-area-cn
