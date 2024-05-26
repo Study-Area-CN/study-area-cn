@@ -21,6 +21,6 @@
 
 # 学习Linux基础
 - [漫谈Linux学习之路](./learn_linux_basic/the_linux_learning_path.md)
-- [Linux的发展历程]()
+- [Linux的发展历程](./learn_linux_basic/the_history_of_linux.md)
 - [Linux发行版]()
 - [Rocky Linux初见]()
