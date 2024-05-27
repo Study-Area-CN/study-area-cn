@@ -27,10 +27,12 @@ Dennis Ritchie得知了这个这个计划后，就开始和Ken一起将Unix使�
 ## AT&T收回版权，Minix与Linux出现
 到了Unix发布第七版的时候（即System v7），AT&T收回了Unix的版权，第七版影响力最大的修改就是不允许将Unix的代码提供给学生。
 
-这个修改可愁坏了一名叫做Android的教授，他在大学里教授操作系统的课程。但因为不能向学生提供Unix的代码，他的课程也几乎无法继续。“自己动手，丰衣足食”，于是这位教授自己写了一个叫做Minix的操作系统。用于教学工作
+这个修改可愁坏了一名叫做Android的教授，他在大学里教授操作系统的课程。但因为不能向学生提供Unix的代码，他的课程也几乎无法继续。“自己动手，丰衣足食”，于是这位教授自己写了一个叫做Minix的操作系统。用于教学工作。
 
->Minix是什么意思呢？就是Mini Unix啦！很小的Unix。
+> Minix是什么意思呢？就是Mini Unix啦！很小的Unix。
 
-后来Minix也很受欢迎，但是 Android教授认为这个系统置用于教学用途，迟迟没有增加新功能，所以一个叫做Linus的芬兰人也是自己写了一个小小的内核，并与GNU计划的开源软件结合，最终发展成了Linux
+后来Minix也很受欢迎，但是 Android教授认为这个系统置用于教学用途，迟迟没有增加新功能，并且不允许商业用途。所以一个叫做 Torvalds Linus 的芬兰人也是自己写了一个“小小的”内核（Linux Kernel），遵循POSIX规范（为了尽可能兼容Unix），并与GNU计划的开源软件结合，最终发展成了GNU/Linux，并且Linux内核使用了GPLv2许可证。
 
 > 因为篇幅限制，所以本文省略了很多东西，如果想要看看更完整的资料可以查阅[Linux考古笔记](https://tinylab-1.gitbook.io/lad-book/zh-cn/background/history)
+
+现在的 Linux 发行版（就是linux内核与软件包的结合，下一篇文章会详细讲述）包含着很多其它GNU中的软件。你如今可以在 [kernel.org](kernel.org) 下载Linux内核，也可以在GNU官网找到其它GNU软件病安装。
