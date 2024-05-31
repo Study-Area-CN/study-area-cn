@@ -408,7 +408,7 @@
         <!-- https://nj1.mossfrp.cn:52719/ -->
         <script>
             var link = "https://nj1.mossfrp.cn:52719/";
-            document.getElementById('popup-btn').addEventListener('click', function () {
+            function stbtn() {
                 if (window.screen.width >= 700) {
                     var popupWindow = document.getElementById('popup-window');
                     if (popupWindow.classList.contains('show')) {
@@ -421,7 +421,8 @@
                 } else {
                     window.open(link, "_blank");
                 }
-            });
+            }
+            document.getElementById('popup-btn').addEventListener('click', stbtn);
 
         </script>
 

@@ -6,6 +6,8 @@
 
 [协议与约定](./conventions.md)
 
+[如何使用学习环境](./how_to_use_studyenv.md)
+
 [1. Licenses/MIT License](./licenses/LICENSE-MIT.md)
 
 [2. Licenses/Apache License](./licenses/LICENSE-APACHE.md)
