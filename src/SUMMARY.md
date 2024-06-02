@@ -13,6 +13,7 @@
 [2. Licenses/Apache License](./licenses/LICENSE-APACHE.md)
 
 # 学习电脑
+
 - [何为电脑](./learn_computer_basic/what_is_computer.md)
 - [输入 & 输出](./learn_computer_basic/input_and_output.md)
 - [中央处理器(CPU)](./learn_computer_basic/cpu.md)
@@ -27,7 +28,11 @@
   - [漫谈Linux学习之路](./learn_linux_basic/the_linux_learning_path.md)
   - [Linux的发展历程](./learn_linux_basic/the_history_of_linux.md)
   - [Linux发行版]()
-  - [Rocky Linux初见]()
+  - [Rocky Linux初见](./learn_linux_basic/rocky_first_met.md)
+    - [在 VMWare Workstation 上准备安装]()
+    - [在 VirtualBox 上准备安装](./learn_linux_basic/install_rocky_linux/install_in_vbox.md)
+    - [在你的电脑(实体机)上准备安装]()
+    - [安装 Rocky Linux](./learn_linux_basic/install_rocky_linux/install_rocky_linux.md)
 - [文件与路径]()
   - [文件权限管理]()
   - [文件目录管理]()
