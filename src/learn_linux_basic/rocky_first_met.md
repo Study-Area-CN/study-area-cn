@@ -18,14 +18,12 @@
            在你的电脑安装 ---------
 ```
 
-以下为方便屏幕宽度不足的设备阅读：
-
 1. 0x00 下载ISO
 2. 0x01 以下三种安装方式任选其一
 
-   * [在 VMWare WS 安装]()
+   * [在 VMWare WS 上安装](./install_rocky_linux/install_in_vmware.md)
    * [在 VirtualBox 安装](./install_rocky_linux/install_in_vbox.md)
-   * [在你的电脑(实体机)安装]()
+   * [在你的电脑(实体机)安装](./install_rocky_linux/install_in_your_pc.md)
 
 3. 0x02 [安装 Rocky Linux](./install_rocky_linux/install_rocky_linux.md)
 
@@ -50,3 +48,42 @@
 ---
 
 接下来请继续 Rocky Linux 的安装。
+
+## 如何选择适合自己的安装方式
+
+如果你有一台闲置的老电脑，或者是一块空的硬盘，那么[实体机安装](./install_rocky_linux/install_in_your_pc.md)是再合适不过的了。
+
+如果你平常不玩游戏，也没有办公的需求或是专业软件，平时就写一写代码，那么你或许也可以尝试一下实体机安装。
+
+虚拟机安装比较灵活，但是需要一定的性能，不过性能损耗也是很小的。
+
+笔者配置：
+
+```text
+CPU: Intel(R) Celeron(R) G1840 (2) @ 2.80 GHz
+内存: 11.39 GiB
+
+OS 1: Arch Linux x86_64
+桌面: KDE Plasma 6.0.5
+
+OS 2: Windows 11
+```
+
+都可以流畅在 VirtualBox 运行虚拟机。
+
+我们现在常见的虚拟机软件有一下几款：
+
+1. VMWare Workstation
+
+    这是一款常见的企业级虚拟机软件。自从被博通收购后，产品对个人用户免费。
+    优点: 有完整的官方文档支持，新手教程多
+    缺点: 不开源，异常问题较难解决
+2. VirtualBox
+
+    这是一款开源免费的虚拟机软件，由 Oracle 维护。
+    优点: 社区支持强大，开源，自定义程度高
+    缺点: 新手使用会略微有些难度(不过也很简单)
+
+* **[在 VMWare WS 上安装](./install_rocky_linux/install_in_vmware.md)**
+* **[在 VirtualBox 上安装](./install_rocky_linux/install_in_vbox.md)**
+* **[在你的电脑(实体机)安装](./install_rocky_linux/install_in_your_pc.md)**
