@@ -35,4 +35,4 @@ Dennis Ritchie得知了这个这个计划后，就开始和Ken一起将Unix使�
 
 > 因为篇幅限制，所以本文省略了很多东西，如果想要看看更完整的资料可以查阅[Linux考古笔记](https://tinylab-1.gitbook.io/lad-book/zh-cn/background/history)
 
-现在的 Linux 发行版（就是linux内核与软件包的结合，下一篇文章会详细讲述）包含着很多其它GNU中的软件。你如今可以在 [kernel.org](kernel.org) 下载Linux内核，也可以在GNU官网找到其它GNU软件并安装在Linux。
+现在的 Linux 发行版（就是linux内核与软件包的结合，下一篇文章会详细讲述）包含着很多其它GNU中的软件。你如今可以在 [kernel.org](https://kernel.org) 下载Linux内核，也可以在GNU官网找到其它GNU软件并安装在Linux。
