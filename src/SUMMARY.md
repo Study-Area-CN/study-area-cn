@@ -27,7 +27,7 @@
 - [初识Linux](./learn_linux_basic/the_linux_learning_path.md)
   - [漫谈Linux学习之路](./learn_linux_basic/the_linux_learning_path.md)
   - [Linux的发展历程](./learn_linux_basic/the_history_of_linux.md)
-  - [Linux发行版]()
+  - [Linux发行版](./learn_linux_basic/linux_distro.md)
   - [Rocky Linux初见](./learn_linux_basic/rocky_first_met.md)
     - [在 VMWare Workstation 上安装](./learn_linux_basic/install_rocky_linux/install_in_vmware.md)
     - [在 VirtualBox 上安装](./learn_linux_basic/install_rocky_linux/install_in_vbox.md)
