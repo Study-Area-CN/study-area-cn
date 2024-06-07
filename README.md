@@ -19,10 +19,6 @@
 
 
 ## 如何帮助开发？
-1. fork本项目。
-2. 新建feat_xxx分支。
-3. 修改。
-4. 新建feat_xxx分支到主仓库main分支的PR。
-5. 等待合并。
+如果您想要协助我们的开发，请参阅[百科](https://git.hmtsai.cn/study-area-cn/study-area-cn/wiki)
 
 如果你对本项目做出了贡献，就请在`/src/contributors.md`中写上你的名字吧！
