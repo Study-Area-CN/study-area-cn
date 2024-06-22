@@ -1,6 +1,6 @@
 # 操作系统（Operating System，OS）
 
-哇！终于来到我们平时最常接触的部分——操作系统了！以前使用的DOS、Windows 98、XP，和现在的Windows 7、Windows 10及 Windows 11，都属于操作系统（Opereating System）。不过，却不要误会操作系统就只有微软（Microsoft）的，其实有很多其它系统都比Microsoft的操作系统更强大、更稳定，只是由于他们的功能和行应用场合不同，一般人较少接触到而已。或许您听说过Unix、Linux、FreeBSD、MAC等名字，其实它们也是操作系统哦～
+哇！终于来到我们平时最常接触的部分——操作系统了！以前使用的DOS、Windows 98、XP，和现在的Windows 7、Windows 10及 Windows 11，都属于操作系统（Opereating System）。不过，却不要误会操作系统就只有微软（Microsoft）的，其实有很多其它系统都比Microsoft的操作系统更强大、更稳定，只是由于他们的功能和行应用场合不同，一般人较少接触到而已。或许您听说过Unix、Linux、FreeBSD、MacOS等名字，其实它们也是操作系统哦～
 
 ## 操作系统的角色
 
