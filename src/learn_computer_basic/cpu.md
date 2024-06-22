@@ -63,5 +63,4 @@ AMD在2005年5月推出了速龙64位处理器。这是首个消费级的x86-64(
 
 ---
 > 原文: [netman](http://www.study-area.org/compu/compu_cpu.htm)</br>
-> 翻译: cxykevin</br>
 > study-area-cn

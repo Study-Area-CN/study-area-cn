@@ -77,5 +77,4 @@ ROM虽然说是只读的，但现在的主板甚至显卡的ROM多数是可以�
 
 ---
 > 原文: [netman](http://www.study-area.org/compu/compu_mem.htm)</br>
-> 翻译: cxykevin</br>
 > study-area-cn

@@ -22,5 +22,4 @@
 
 ---
 > 原文: [netman](http://www.study-area.org/compu/compu_defi.htm)</br>
-> 翻译: Hmtsai</br>
 > study-area-cn

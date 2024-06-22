@@ -23,3 +23,6 @@
 * [mxt.cn](https://mxt.cn/lxojres/jslinux/index.html)
 
 > mxt使用的操作系统略微不同
+
+---
+> study-area-cn

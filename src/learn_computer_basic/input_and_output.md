@@ -37,5 +37,4 @@
 
 ---
 > 原文: [netman](http://www.study-area.org/compu/compu_io.htm)</br>
-> 翻译: Hmtsai</br>
 > study-area-cn

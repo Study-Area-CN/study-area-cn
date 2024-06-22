@@ -87,3 +87,5 @@ OS 2: Windows 11
 * **[在 VMWare WS 上安装](./install_rocky_linux/install_in_vmware.md)**
 * **[在 VirtualBox 上安装](./install_rocky_linux/install_in_vbox.md)**
 * **[在你的电脑(实体机)安装](./install_rocky_linux/install_in_your_pc.md)**
+---
+> study-area-cn
