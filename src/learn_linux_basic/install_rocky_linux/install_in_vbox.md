@@ -1,8 +1,8 @@
 # 在 VirtualBox 上安装 Rocky Linux
 
-> 上级目录：[Rocky Linux初见](../install_rocky_linux.md)
+> 上级目录：[Rocky Linux初见](../rocky_first_met.md)
 
-在进行安装前我们需要去下载一份 Rocky Linux 的镜像，在[Rocky Linux初见](../install_rocky_linux.md)中有说明，此处不再赘述。
+在进行安装前我们需要去下载一份 Rocky Linux 的镜像，在[Rocky Linux初见](../rocky_first_met.md)中有说明，此处不再赘述。
 
 ## 0x00 下载并安装 VirtualBox
 
@@ -30,7 +30,7 @@
 
 然后我们启动 vbox，进行下一步安装。
 
-## 0x01 新建并虚拟机
+## 0x01 新建虚拟机
 
 软件我们有了，接下来我们要给虚拟机注入灵魂——操作系统了
 

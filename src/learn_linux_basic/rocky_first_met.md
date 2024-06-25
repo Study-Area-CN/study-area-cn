@@ -73,7 +73,7 @@ OS 2: Windows 11
 
 我们现在常见的虚拟机软件有以下几款：
 
-1. VMWare Workstation
+1. VMWare Workstation Pro
 
     这是一款常见的企业级虚拟机软件。自从被博通收购后，产品对个人用户免费。
     优点: 有完整的官方文档支持，新手教程多
