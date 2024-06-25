@@ -45,5 +45,5 @@ jobs:
       - name: Check book
         run: ls book
       - name: Upload
-        run: lftp ${{ secrets.FTP_SITE }} -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PWD }} -e "mirror -R -P book index"
+        run: lftp ${{ secrets.FTP_SITE }} -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PWD }} -e "mirror -R index book"
 
