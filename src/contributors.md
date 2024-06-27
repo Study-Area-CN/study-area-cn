@@ -8,7 +8,7 @@
 
 - hmtsai
 - cxykevin
-- undefined
+- undefined（域名贡献者）
 - 路人甲
 
 ## 第一章：学习电脑
