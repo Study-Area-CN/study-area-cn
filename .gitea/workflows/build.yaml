@@ -59,7 +59,7 @@ jobs:
           ls mapbook
       - name: Build sitemap
         run: |
-          python mapbook/build.py
+          python3 mapbook/build.py
       - name: Check book
         run: ls book
       - name: Upload
