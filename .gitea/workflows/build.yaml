@@ -42,6 +42,24 @@ jobs:
         run: chmod +x study-area-action-deps/mdbook-linux-$(uname -m)
       - name: Build mdbook
         run: study-area-action-deps/mdbook-linux-$(uname -m) build
+      - name: Cache mapbook
+        uses: https://git.hmtsai.cn/actions/cache@v4
+        id: cache-mapbook
+        env:
+          cache-name: cache-mapbook
+        with:
+          key: mapbook
+          path: |
+            mapbook
+      - name: Get mapbook
+        if: ${{ steps.cache-mapbook.outputs.cache-hit != 'true' }}
+        run: |
+          git clone https://git.hmtsai.cn/cxykevin/mapbook
+          echo "Check..."
+          ls mapbook
+      - name: Build sitemap
+        run: |
+          python mapbook/build.py
       - name: Check book
         run: ls book
       - name: Upload
