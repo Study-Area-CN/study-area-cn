@@ -1,6 +1,6 @@
-# Rocky Linux 初见
+# Rocky Linux 安装
 
-既然我们的标题是`Rocky Linux 初见`，那么我们肯定要亲自动手安一遍系统。
+既然我们要学习Linux，那么我们肯定要亲自动手安一遍系统。
 
 不过安系统并不是一个难事，有了前面的铺垫，其实自己也是可以搞明白的。
 
@@ -87,5 +87,6 @@ OS 2: Windows 11
 * **[在 VMWare WS 上安装](./install_rocky_linux/install_in_vmware.md)**
 * **[在 VirtualBox 上安装](./install_rocky_linux/install_in_vbox.md)**
 * **[在你的电脑(实体机)安装](./install_rocky_linux/install_in_your_pc.md)**
+
 ---
 > study-area-cn
