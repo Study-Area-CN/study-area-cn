@@ -6,10 +6,10 @@
 
 团队成员：
 
-- hmtsai
+- [hmtsai](https://blog.hmtsai.cn)
 - cxykevin
 - undefined（域名贡献者）
-- 路人甲
+- [路人甲](https://en.lurenapp.uk)
 
 ## 第一章：学习电脑
 
