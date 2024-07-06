@@ -34,7 +34,7 @@
     - [在 VirtualBox 上安装](./learn_linux_basic/install_rocky_linux/install_in_vbox.md)
     - [在你的电脑(实体机)上安装](./learn_linux_basic/install_rocky_linux/install_in_your_pc.md)
     - [安装 Rocky Linux](./learn_linux_basic/install_rocky_linux/install_rocky_linux.md)
-  - [Rocky Linux 初见]()
+  - [Rocky Linux 初见](./learn_linux_basic/rocky_linux_first_met.md)
 - [文件与路径](./file_and_path/file_and_path.md)
   - [文件目录管理]()
   - [文件权限管理]()
