@@ -1,10 +1,10 @@
 # 贡献者名单
 
-原站作者：
+## 原站作者
 
 - netman
 
-团队成员：
+## 团队成员
 
 - [hmtsai](https://blog.hmtsai.cn)
 - cxykevin
@@ -15,5 +15,7 @@
 
 - 东北大学 张送柱（@Hmtsai 的计算机老师）
 - ZXL-Q
+
+## 第二章：Linux 基础
 
 > 每个子名单排名不分先后
