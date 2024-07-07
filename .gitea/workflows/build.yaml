@@ -59,6 +59,7 @@ jobs:
           lint-md src/**/* --threads=8 --fix --suppress-warnings
       - name: Commit files
         run: |
+          black --check . || black --fast .
           git config --global user.name "studyareacn-format-bot"
           git config --global user.email "studyareacn-format@noreply.localhost"
           git remote set-url origin https://${{ secrets.GIT_USER }}:${{ secrets.GIT_PASSWD }}@git.hmtsai.cn/study-area-cn/study-area-cn
