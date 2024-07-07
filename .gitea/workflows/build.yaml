@@ -3,6 +3,68 @@ run-name: Build and Publish book (${{ gitea.actor }})
 on: [push]
 
 jobs:
+  Format:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Info
+        run: echo "OS=${{ runner.os }} NAME=${{ gitea.event_name }} REPO=${{ gitea.repository }} BRANCH=${{ gitea.ref }} ST=${{ job.status }} RUNID=${{ gitea.run_id }}"
+      - name: Checkout
+        uses: https://git.hmtsai.cn/actions/checkout@v4
+      - name: Cache Node
+        uses: https://git.hmtsai.cn/actions/cache@v4
+        id: cache-node
+        env:
+          cache-name: cache-node
+        with:
+          key: ${{ runner.os }}-node
+          path: |
+            /node
+      - name: Prepare node
+        if: ${{ steps.cache-node.outputs.cache-hit != 'true' }}
+        run: |
+          git clone https://git.hmtsai.cn/cxykevin/study-area-home-action-deps
+          mv study-area-home-action-deps/node-$(uname -m).tar.xz study-area-home-action-deps/node.tar.xz
+          tar xvJf study-area-home-action-deps/node.tar.xz
+          mv node-*-linux-* /node
+          export PATH=/node/bin:$PATH
+          echo $PATH
+      - name: Get npm root
+        id: npm_root
+        run: echo "::set-output name=npmroot::$(npm root -g)"
+      - name: Cache Node Moudles
+        id: cache-node-moudles
+        uses: https://git.hmtsai.cn/actions/cache@v4
+        env:
+          cache-name: cache-node-moudles
+        with:
+          key: ${{ runner.os }}-node_moudles
+          path: |
+            ${{ steps.npm_root.outputs.npmroot }}
+      - name: Check node
+        run: |
+          node -v
+          npm -v
+      - name: Prepare NPM source
+        run: |
+          export PATH=/node/bin:$PATH
+          npm config set registry https://registry.npmmirror.com
+      - name: npm install
+        if: ${{ steps.cache-node-moudles.outputs.cache-hit != 'true' }}
+        run: |
+          export PATH=/node/bin:$PATH
+          npm install -g @lint-md/cli
+      - name: Format
+        run: |
+          export PATH=/node/bin:$PATH
+          lint-md src/**/* --threads=8 --fix --suppress-warnings
+      - name: Commit files
+        run: |
+          git config --global user.name "studyareacn-format-bot"
+          git config --global user.email "studyareacn-format@noreply.localhost"
+          git remote set-url origin https://${{ secrets.GIT_USER }}:${{ secrets.GIT_PASSWD }}@git.hmtsai.cn/study-area-cn/study-area-cn
+          git add .
+          git commit -m "Auto format"
+          git push
   Run:
     runs-on: ubuntu-latest
     steps:
@@ -66,4 +128,3 @@ jobs:
         run: |
           mv book index
           lftp ${{ secrets.FTP_SITE }} -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PWD }} -e "mirror -R index index"
-
