@@ -1,8 +1,8 @@
 # 如何使用学习环境？
 
-本站提供了一个在线学习linux的环境，可以执行一些简单的命令，甚至可以编译一些程序。
+本站提供了一个在线学习 linux 的环境，可以执行一些简单的命令，甚至可以编译一些程序。
 
-本环境带宽有限，加载可能需要5到10分钟。
+本环境带宽有限，加载可能需要 5 到 10 分钟。
 
 本环境基于 jslinux 搭建。所有程序运行在您的浏览器上。
 
@@ -19,10 +19,11 @@
 
 如果本站服务无法访问，您还可以去下面的链接：
 
-* [JSLinux](https://bellard.org/jslinux/vm.html?cpu=riscv64&url=fedora33-riscv.cfg&mem=256)
-* [mxt.cn](https://mxt.cn/lxojres/jslinux/index.html)
+- [JSLinux](https://bellard.org/jslinux/vm.html?cpu=riscv64&url=fedora33-riscv.cfg&mem=256)
+- [mxt.cn](https://mxt.cn/lxojres/jslinux/index.html)
 
-> mxt使用的操作系统略微不同
+> mxt 使用的操作系统略微不同
 
 ---
+
 > study-area-cn

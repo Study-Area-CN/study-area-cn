@@ -1,10 +1,10 @@
 # Rocky Linux 安装
 
-既然我们要学习Linux，那么我们肯定要亲自动手安一遍系统。
+既然我们要学习 Linux，那么我们肯定要亲自动手安一遍系统。
 
 不过安系统并不是一个难事，有了前面的铺垫，其实自己也是可以搞明白的。
 
-> 开始安装前请确保你有着充足的时间（1-2个小时）并确保不会断电，安装系统比较耗费时间
+> 开始安装前请确保你有着充足的时间（1-2 个小时）并确保不会断电，安装系统比较耗费时间
 
 ---
 
@@ -18,16 +18,16 @@
            在你的电脑安装 ---------
 ```
 
-1. 0x00 下载ISO
+1. 0x00 下载 ISO
 2. 0x01 以下三种安装方式任选其一
 
-   * [在 VMWare WS 上安装](./install_rocky_linux/install_in_vmware.md)
-   * [在 VirtualBox 安装](./install_rocky_linux/install_in_vbox.md)
-   * [在你的电脑(实体机)安装](./install_rocky_linux/install_in_your_pc.md)
+   - [在 VMWare WS 上安装](./install_rocky_linux/install_in_vmware.md)
+   - [在 VirtualBox 安装](./install_rocky_linux/install_in_vbox.md)
+   - [在你的电脑(实体机)安装](./install_rocky_linux/install_in_your_pc.md)
 
 3. 0x02 [安装 Rocky Linux](./install_rocky_linux/install_rocky_linux.md)
 
-## 下载ISO
+## 下载 ISO
 
 下面是 Rocky Linux 的官网：
 
@@ -35,7 +35,7 @@
 
 下面是几个可以直接下载 ISO 文件的链接：
 
-> ISO文件较大(`10GB`左右)，建议使用专业的下载工具，如`IDM`(Windows下收费软件)，~~`迅雷`~~(有服务器加速，较快，但是有广告等问题)，`Motrix`(跨平台开源，不过较慢)，~~PCL(一个某游戏启动器，不过下载文件超级快)~~ 等
+> ISO 文件较大(`10GB`左右)，建议使用专业的下载工具，如`IDM`(Windows 下收费软件)，~~`迅雷`~~(有服务器加速，较快，但是有广告等问题)，`Motrix`(跨平台开源，不过较慢)，~~PCL(一个某游戏启动器，不过下载文件超级快)~~ 等
 >
 > [官方](https://download.rockylinux.org/pub/rocky/9/isos/x86_64/Rocky-9.4-x86_64-dvd.iso) (国内不推荐，网速较慢，某雷可以忽略，但官方有提供[种子文件](https://download.rockylinux.org/pub/rocky/9/isos/x86_64/Rocky-9.4-x86_64-dvd.torrent))
 >
@@ -75,18 +75,20 @@ OS 2: Windows 11
 
 1. VMWare Workstation Pro
 
-    这是一款常见的企业级虚拟机软件。自从被博通收购后，产品对个人用户免费。
-    优点: 有完整的官方文档支持，新手教程多
-    缺点: 不开源，异常问题较难解决，被博通收购后下载链接很难找并且需要登录
+   这是一款常见的企业级虚拟机软件。自从被博通收购后，产品对个人用户免费。
+   优点: 有完整的官方文档支持，新手教程多
+   缺点: 不开源，异常问题较难解决，被博通收购后下载链接很难找并且需要登录
+
 2. VirtualBox
 
-    这是一款开源免费的虚拟机软件，由 Oracle 维护。
-    优点: 社区支持强大，开源，自定义程度高
-    缺点: 新手使用会略微有些难度(不过也很简单)
+   这是一款开源免费的虚拟机软件，由 Oracle 维护。
+   优点: 社区支持强大，开源，自定义程度高
+   缺点: 新手使用会略微有些难度(不过也很简单)
 
-* **[在 VMWare WS 上安装](./install_rocky_linux/install_in_vmware.md)**
-* **[在 VirtualBox 上安装](./install_rocky_linux/install_in_vbox.md)**
-* **[在你的电脑(实体机)安装](./install_rocky_linux/install_in_your_pc.md)**
+- **[在 VMWare WS 上安装](./install_rocky_linux/install_in_vmware.md)**
+- **[在 VirtualBox 上安装](./install_rocky_linux/install_in_vbox.md)**
+- **[在你的电脑(实体机)安装](./install_rocky_linux/install_in_your_pc.md)**
 
 ---
+
 > study-area-cn
