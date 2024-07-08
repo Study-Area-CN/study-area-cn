@@ -10,7 +10,11 @@ jobs:
         run: echo "OS=${{ runner.os }} NAME=${{ gitea.event_name }} REPO=${{ gitea.repository }} BRANCH=${{ gitea.ref }} ST=${{ job.status }} RUNID=${{ gitea.run_id }}"
       - name: Checkout
         uses: https://git.hmtsai.cn/actions/checkout@v4
+      - name: Get Hash
+        id: src_hash
+        run: echo "::set-output name=src_hash::$(if [[ $(find src -type f -exec sha256sum {} \; | sha256sum | cut -d ' ' -f 1) = $(cat hash.txt) ]] then echo run; fi)"
       - name: Cache Node
+        if: ${{ steps.src_hash.outputs.src_hash != 'run' }}
         uses: https://git.hmtsai.cn/actions/cache@v4
         id: cache-node
         env:
@@ -20,7 +24,7 @@ jobs:
           path: |
             /node
       - name: Prepare node
-        if: ${{ steps.cache-node.outputs.cache-hit != 'true' }}
+        if: ${{ steps.src_hash.outputs.src_hash != 'run' && steps.cache-node.outputs.cache-hit != 'true' }}
         run: |
           git clone https://git.hmtsai.cn/cxykevin/study-area-home-action-deps
           mv study-area-home-action-deps/node-$(uname -m).tar.xz study-area-home-action-deps/node.tar.xz
@@ -29,9 +33,11 @@ jobs:
           export PATH=/node/bin:$PATH
           echo $PATH
       - name: Get npm root
+        if: ${{ steps.src_hash.outputs.src_hash != 'run' }}
         id: npm_root
         run: echo "::set-output name=npmroot::$(npm root -g)"
       - name: Cache Node Moudles
+        if: ${{ steps.src_hash.outputs.src_hash != 'run' }}
         id: cache-node-moudles
         uses: https://git.hmtsai.cn/actions/cache@v4
         env:
@@ -41,23 +47,31 @@ jobs:
           path: |
             ${{ steps.npm_root.outputs.npmroot }}
       - name: Check node
+        if: ${{ steps.src_hash.outputs.src_hash != 'run' }}
         run: |
           node -v
           npm -v
       - name: Prepare NPM source
+        if: ${{ steps.src_hash.outputs.src_hash != 'run' }}
         run: |
           export PATH=/node/bin:$PATH
           npm config set registry https://registry.npmmirror.com
       - name: npm install
-        if: ${{ steps.cache-node-moudles.outputs.cache-hit != 'true' }}
+        if: ${{ steps.src_hash.outputs.src_hash != 'run' && steps.cache-node-moudles.outputs.cache-hit != 'true' }}
         run: |
           export PATH=/node/bin:$PATH
           npm install -g @lint-md/cli
       - name: Format
+        if: ${{ steps.src_hash.outputs.src_hash != 'run' }}
         run: |
           export PATH=/node/bin:$PATH
           lint-md src/**/* --threads=8 --fix --suppress-warnings
+      - name: Set hash cache
+        if: ${{ steps.src_hash.outputs.src_hash != 'run' }}
+        run: |
+          echo "$(find src -type f -exec sha256sum {} \; | sha256sum | cut -d ' ' -f 1)" > hash.txt
       - name: Commit files
+        if: ${{ steps.src_hash.outputs.src_hash != 'run' }}
         run: |
           git config --global user.name "studyareacn-format-bot"
           git config --global user.email "studyareacn-format@noreply.localhost"
@@ -70,6 +84,11 @@ jobs:
     steps:
       - name: Info
         run: echo "OS=${{ runner.os }} NAME=${{ gitea.event_name }} REPO=${{ gitea.repository }} BRANCH=${{ gitea.ref }} ST=${{ job.status }} RUNID=${{ gitea.run_id }}"
+      - name: Checkout
+        uses: https://git.hmtsai.cn/actions/checkout@v4
+      - name: Get Hash
+        id: src_hash
+        run: echo "::set-output name=npmhash::$(if [[ $(find src -type f -exec sha256sum {} \; | sha256sum | cut -d ' ' -f 1) = $(cat hash.txt) ]] then echo run; fi)"
       - name: Prepare Source
         run: |
           echo "--- write source ---"
@@ -83,8 +102,6 @@ jobs:
       - name: Prepare Lftp
         run: |
           apt-get install lftp -y
-      - name: Checkout
-        uses: https://git.hmtsai.cn/actions/checkout@v4
       - name: Cache mdbook
         uses: https://git.hmtsai.cn/actions/cache@v4
         id: cache-mdbook
