@@ -64,7 +64,8 @@ jobs:
           git remote set-url origin https://${{ secrets.GIT_USER }}:${{ secrets.GIT_PASSWD }}@git.hmtsai.cn/study-area-cn/study-area-cn
           git add .
           git commit -m "Auto format"
-          git push || echo "Finish"
+          echo 'git push || echo "Finish"' > ./push_cmd.sh
+          bash ./push_cmd.sh
   Run:
     runs-on: ubuntu-latest
     steps:
