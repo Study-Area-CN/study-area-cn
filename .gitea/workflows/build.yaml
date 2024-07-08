@@ -64,8 +64,7 @@ jobs:
           git remote set-url origin https://${{ secrets.GIT_USER }}:${{ secrets.GIT_PASSWD }}@git.hmtsai.cn/study-area-cn/study-area-cn
           git add .
           git commit -m "Auto format"
-          echo 'git push || echo "Finish"' > ./push_cmd.sh
-          bash ./push_cmd.sh
+          echo "__import__(\"os\").system(\"git push\")" > ezpush.py && python3 ezpush.py
   Run:
     runs-on: ubuntu-latest
     steps:
