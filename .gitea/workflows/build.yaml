@@ -12,7 +12,7 @@ jobs:
         uses: https://git.hmtsai.cn/actions/checkout@v4
       - name: Get Hash
         id: src_hash
-        run: echo "::set-output name=src_hash::$(if [[ $(find src -type f -exec sha256sum {} \; | sha256sum | cut -d ' ' -f 1) = $(cat hash.txt) ]] then echo run; fi)"
+        run: echo "::set-output name=src_hash::$(if [[ $(find src -type f -exec sha256sum {} \; | sha256sum | cut -d ' ' -f 1) = $(cat hash.txt) ]] then echo run; else echo next; fi)"
       - name: Cache Node
         if: ${{ steps.src_hash.outputs.src_hash != 'run' }}
         uses: https://git.hmtsai.cn/actions/cache@v4
