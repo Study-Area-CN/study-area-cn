@@ -79,11 +79,10 @@ jobs:
           git add .
           git commit -m "Auto format"
           echo "__import__(\"os\").system(\"sh -c \\\"git push\\\"\")" > ezpush.py && python3 ezpush.py
-      - name: Get Hash
+      - name: "-------------"
         id: src_hash
-        run: echo "::set-output name=npmhash::$(if [[ $(find src -type f -exec sha256sum {} \; | sha256sum | cut -d ' ' -f 1) = $(cat hash.txt) ]]; then echo run; fi)"
+        run: echo "-------------"
       - name: Prepare Source
-        if: ${{ steps.src_hash.outputs.src_hash != 'run' }}
         run: |
           echo "--- write source ---"
           echo "deb http://mirrors.tuna.tsinghua.edu.cn/debian/ bullseye main contrib non-free">/etc/apt/sources.list
@@ -94,11 +93,9 @@ jobs:
           echo "--- update source ---"
           apt-get update
       - name: Prepare Lftp
-        if: ${{ steps.src_hash.outputs.src_hash != 'run' }}
         run: |
           apt-get install lftp -y
       - name: Cache mdbook
-        if: ${{ steps.src_hash.outputs.src_hash != 'run' }}
         uses: https://git.hmtsai.cn/actions/cache@v4
         id: cache-mdbook
         env:
@@ -108,19 +105,16 @@ jobs:
           path: |
             study-area-action-deps
       - name: Get file
-        if: ${{ steps.src_hash.outputs.src_hash != 'run' && steps.cache-mdbook.outputs.cache-hit != 'true' }}
+        if: ${{ steps.cache-mdbook.outputs.cache-hit != 'true' }}
         run: |
           git clone https://git.hmtsai.cn/cxykevin/study-area-action-deps
           echo "Check..."
           ls study-area-action-deps
       - name: Add permission
-        if: ${{ steps.src_hash.outputs.src_hash != 'run' }}
         run: chmod +x study-area-action-deps/mdbook-linux-$(uname -m)
       - name: Build mdbook
-        if: ${{ steps.src_hash.outputs.src_hash != 'run' }}
         run: study-area-action-deps/mdbook-linux-$(uname -m) build
       - name: Cache mapbook
-        if: ${{ steps.src_hash.outputs.src_hash != 'run' }}
         uses: https://git.hmtsai.cn/actions/cache@v4
         id: cache-mapbook
         env:
@@ -130,20 +124,17 @@ jobs:
           path: |
             mapbook
       - name: Get mapbook
-        if: ${{ steps.src_hash.outputs.src_hash != 'run' && steps.cache-mapbook.outputs.cache-hit != 'true' }}
+        if: ${{ steps.cache-mapbook.outputs.cache-hit != 'true' }}
         run: |
           git clone https://git.hmtsai.cn/cxykevin/mapbook
           echo "Check..."
           ls mapbook
       - name: Build sitemap
-        if: ${{ steps.src_hash.outputs.src_hash != 'run' }}
         run: |
           python3 mapbook/build.py
       - name: Check book
-        if: ${{ steps.src_hash.outputs.src_hash != 'run' }}
         run: ls book
       - name: Upload
-        if: ${{ steps.src_hash.outputs.src_hash != 'run' }}
         run: |
           mv book index
           lftp ${{ secrets.FTP_SITE }} -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PWD }} -e "mirror -R index index"
