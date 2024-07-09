@@ -3,7 +3,7 @@ run-name: Build and Publish book (${{ gitea.actor }})
 on: [push]
 
 jobs:
-  Format:
+  Build:
     runs-on: ubuntu-latest
     steps:
       - name: Info
@@ -79,13 +79,6 @@ jobs:
           git add .
           git commit -m "Auto format"
           echo "__import__(\"os\").system(\"sh -c \\\"git push\\\"\")" > ezpush.py && python3 ezpush.py
-  Run:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Info
-        run: echo "OS=${{ runner.os }} NAME=${{ gitea.event_name }} REPO=${{ gitea.repository }} BRANCH=${{ gitea.ref }} ST=${{ job.status }} RUNID=${{ gitea.run_id }}"
-      - name: Checkout
-        uses: https://git.hmtsai.cn/actions/checkout@v4
       - name: Get Hash
         id: src_hash
         run: echo "::set-output name=npmhash::$(if [[ $(find src -type f -exec sha256sum {} \; | sha256sum | cut -d ' ' -f 1) = $(cat hash.txt) ]]; then echo run; fi)"
