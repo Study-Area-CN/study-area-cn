@@ -1,4 +1,6 @@
-# Study Area CN [learn.study-area.org.cn](learn.study-area.org.cn)
+# Study Area CN 
+
+### URL : [learn.study-area.org.cn](https://learn.study-area.org.cn)
 
 ![stars](https://img.shields.io/badge/dynamic/json?url=http%3A%2F%2Fgit.hmtsai.cn%2Fapi%2Fv1%2Frepos%2Fstudy-area-cn%2Fstudy-area-cn&query=%24.stars_count&style=for-the-badge&logo=gitea&label=stars&labelColor=%23F0F0F0&color=%231080FF&cacheSeconds=120&link=http%3A%2F%2Fgit.hmtsai.cn%2Fstudy-area-cn%2Fstudy-area-cn&link=http%3A%2F%2Fgit.hmtsai.cn%2Fstudy-area-cn%2Fstudy-area-cn)
 ![forks](https://img.shields.io/badge/dynamic/json?url=http%3A%2F%2Fgit.hmtsai.cn%2Fapi%2Fv1%2Frepos%2Fstudy-area-cn%2Fstudy-area-cn&query=%24.forks_count&style=for-the-badge&logo=git&logoColor=%23303030&label=forks&labelColor=%23F0F0F0&color=%2350B250&cacheSeconds=120&link=http%3A%2F%2Fgit.hmtsai.cn%2Fstudy-area-cn%2Fstudy-area-cn&link=http%3A%2F%2Fgit.hmtsai.cn%2Fstudy-area-cn%2Fstudy-area-cn)
