@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="{{ language }}" class="{{ default_theme }}" dir="{{ text_direction }}">
+<html lang="{{ language }}" dir="{{ text_direction }}" class="mdui-theme-auto" style="height:100%;width:100%">
 
 <head>
     <meta NAME="ROBOTS" CONTENT="INDEX,FOLLOW">
@@ -17,11 +17,23 @@
     <!-- Custom HTML head -->
     {{> head}}
 
+    <!-- MDUI CSS&JS -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no"/>
+    <meta name="renderer" content="webkit"/>
+
+    <link rel="stylesheet" href="https://unpkg.com/mdui@2/mdui.css">
+    <script src="https://unpkg.com/mdui@2/mdui.global.js"></script>
+
+
+    <!-- Material Icons Font (Filled) -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
     <meta name="description" content="Study Area CN {{ description }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#ffffff">
     <meta name="keywords"
-    content="Study-area, study-area, study-area-cn Study Area CN, study area cn, 酷学园, 酷学园 CN , 酷！学园, netman, linux, mdbook">
+        content="Study-area, study-area, study-area-cn Study Area CN, study area cn, 酷学园, 酷学园 CN , 酷！学园, netman, linux, mdbook">
 
     {{#if favicon_svg}}
     <link rel="icon" href="{{ path_to_root }}favicon.svg">
@@ -29,23 +41,14 @@
     {{#if favicon_png}}
     <link rel="shortcut icon" href="{{ path_to_root }}favicon.png">
     {{/if}}
-    <link rel="stylesheet" href="{{ path_to_root }}css/variables.css">
-    <link rel="stylesheet" href="{{ path_to_root }}css/general.css">
-    <link rel="stylesheet" href="{{ path_to_root }}css/chrome.css">
+
     {{#if print_enable}}
     <link rel="stylesheet" href="{{ path_to_root }}css/print.css" media="print">
     {{/if}}
 
-    <!-- Fonts -->
-    <link rel="stylesheet" href="{{ path_to_root }}FontAwesome/css/font-awesome.css">
-    {{#if copy_fonts}}
-    <link rel="stylesheet" href="{{ path_to_root }}fonts/fonts.css">
-    {{/if}}
-
     <!-- Highlight.js Stylesheets -->
-    <link rel="stylesheet" href="{{ path_to_root }}highlight.css">
-    <link rel="stylesheet" href="{{ path_to_root }}tomorrow-night.css">
-    <link rel="stylesheet" href="{{ path_to_root }}ayu-highlight.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
 
     <!-- Custom theme stylesheets -->
     {{#each additional_css}}
@@ -58,261 +61,116 @@
         src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     {{/if}}
 
-    <!-- study env css -->
     <style>
-        .popup-window {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            /* Start with the window off screen */
-            width: 100%;
-            height: 100%;
-            border: none;
-            background-color: rgb(34, 34, 34);
-            box-shadow: -5px 0 5px rgba(0, 0, 0, 0.2);
-            z-index: 1000;
-            overflow-y: auto;
-            /* Enable scrolling if content is taller than the screen */
-            transition: right 0.3s ease-in-out;
-            /* Smooth slide in animation */
-        }
+    ol,li{
+        list-style:none;
+        font-size:1em;
+    }
 
-        .popup-window iframe {
-            background-color: rgb(34, 34, 34);
-            width: 500px;
-            height: 100vh;
-            /* Use viewport height to fill the height of the window */
-            border: none;
-        }
+    .part-title{
+        font-weight:bold;
+        font-size:1.2em;
+    }
 
-        .popup-window.show {
-            right: calc(-100% + 500px);
-            /* Slide the window into view */
-        }
+    a {
+        position: relative;
+        text-decoration: none;
+        color: rgb(var(--mdui-color-primary));
+    }
 
-        #pFrame {
-            background-color: rgb(34, 34, 34);
-            width: 500px;
-            height: 100vh;
-            /* Use viewport height to fill the height of the window */
-            border: none;
-        }
+    a:after {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+        background-color: rgb(var(--mdui-color-primary))
+    }
+
+    a:hover:after {
+        width: 100%;
+        left: 0;
+    }
     </style>
 </head>
 
-<body class="sidebar-visible no-js">
+<body style="margin:0;padding:0;min-height:100%;width:100%"> 
+    <mdui-layout style="height:100%">
+        <mdui-top-app-bar>
+            <mdui-button-icon icon="menu" id="open-drawer"></mdui-button-icon>
+            <mdui-button id="open-study-env">实验环境</mdui-button>
+            <mdui-top-app-bar-title>{{ book_title }}</mdui-top-app-bar-title>
+                <div style="flex-grow: 1"></div>
+            {{#if git_repository_url}}
+            <mdui-button-icon icon="web" href="{{git_repository_url}}"></mdui-button-icon>
+            {{/if}}
+            {{#if print_enable}}
+            <mdui-button-icon href="{{ path_to_root }}print.html" title="Print this book" aria-label="Print this book" icon="print">
+            </mdui-button-icon>
+            {{/if}}
+        </mdui-top-app-bar>
 
-    <div id="body-container">
-        <!-- Provide site root to javascript -->
+        <mdui-navigation-drawer close-on-overlay-click class="toc-drawer">
+        {{#toc}}{{/toc}}
+        </mdui-navigation-drawer>
+
         <script>
-            var path_to_root = "{{ path_to_root }}";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "{{ preferred_dark_theme }}" : "{{ default_theme }}";
+            const navigationDrawer = document.querySelector(".toc-drawer");
+            const openButton = document.getElementById("open-drawer");
+
+            openButton.addEventListener("click", () => navigationDrawer.open = !navigationDrawer.open);
         </script>
 
-        <!-- Work around some values being stored in localStorage wrapped in quotes -->
-        <script>
-            try {
-                var theme = localStorage.getItem('mdbook-theme');
-                var sidebar = localStorage.getItem('mdbook-sidebar');
-
-                if (theme.startsWith('"') && theme.endsWith('"')) {
-                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
-                }
-
-                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
-                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
-                }
-            } catch (e) { }
-        </script>
-
-        <!-- Set the theme before any content is loaded, prevents flash -->
-        <script>
-            var theme;
-            try { theme = localStorage.getItem('mdbook-theme'); } catch (e) { }
-            if (theme === null || theme === undefined) { theme = default_theme; }
-            var html = document.querySelector('html');
-            html.classList.remove('{{ default_theme }}')
-            html.classList.add(theme);
-            var body = document.querySelector('body');
-            body.classList.remove('no-js')
-            body.classList.add('js');
-        </script>
-
-        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
-
-        <!-- Hide / unhide sidebar before it is displayed -->
-        <script>
-            var body = document.querySelector('body');
-            var sidebar = null;
-            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
-            if (document.body.clientWidth >= 1080) {
-                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch (e) { }
-                sidebar = sidebar || 'visible';
-            } else {
-                sidebar = 'hidden';
-            }
-            sidebar_toggle.checked = sidebar === 'visible';
-            body.classList.remove('sidebar-visible');
-            body.classList.add("sidebar-" + sidebar);
-        </script>
-
-        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <div class="sidebar-scrollbox">
-                {{#toc}}{{/toc}}
-            </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
-                <div class="sidebar-resize-indicator"></div>
-            </div>
-        </nav>
-
-        <!-- Track and set sidebar scroll position -->
-        <script>
-            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
-            sidebarScrollbox.addEventListener('click', function (e) {
-                if (e.target.tagName === 'A') {
-                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
-                }
-            }, { passive: true });
-            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
-            sessionStorage.removeItem('sidebar-scroll');
-            if (sidebarScrollTop) {
-                // preserve sidebar scroll position when navigating via links within sidebar
-                sidebarScrollbox.scrollTop = sidebarScrollTop;
-            } else {
-                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
-                var activeSection = document.querySelector('#sidebar .active');
-                if (activeSection) {
-                    activeSection.scrollIntoView({ block: 'center' });
-                }
-            }
-        </script>
-
-        <div id="page-wrapper" class="page-wrapper">
-            <div class="page">
-                {{> header}}
-                <div id="menu-bar-hover-placeholder"></div>
-                <div id="menu-bar" class="menu-bar sticky">
-                    <div class="left-buttons">
-                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor"
-                            title="Toggle Table of Contents" aria-label="Toggle Table of Contents"
-                            aria-controls="sidebar">
-                            <i class="fa fa-bars"></i>
-                        </label>
-                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme"
-                            aria-label="Change theme" aria-haspopup="true" aria-expanded="false"
-                            aria-controls="theme-list">
-                            <i class="fa fa-paint-brush"></i>
-                        </button>
-                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
-                        </ul>
-                        {{#if search_enabled}}
-                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)"
-                            aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S"
-                            aria-controls="searchbar">
-                            <i class="fa fa-search"></i>
-                        </button>
-                        {{/if}}
-                        <button id="popup-btn" class="icon-button" type="button" aria-expanded="false"
-                            aria-keyshortcuts="T" class="popup-btn">实验环境</button>
-                    </div>
-
-                    <h1 class="menu-title">{{ book_title }}</h1>
-
-                    <div class="right-buttons">
-                        {{#if print_enable}}
-                        <a href="{{ path_to_root }}print.html" title="Print this book" aria-label="Print this book">
-                            <i id="print-button" class="fa fa-print"></i>
-                        </a>
-                        {{/if}}
-                        {{#if git_repository_url}}
-                        <a href="{{git_repository_url}}" title="Git repository" aria-label="Git repository">
-                            <i id="git-repository-button" class="fa {{git_repository_icon}}"></i>
-                        </a>
-                        {{/if}}
-                        {{#if git_repository_edit_url}}
-                        <a href="{{git_repository_edit_url}}" title="Suggest an edit" aria-label="Suggest an edit">
-                            <i id="git-edit-button" class="fa fa-edit"></i>
-                        </a>
-                        {{/if}}
-
-                    </div>
-                </div>
-
-                {{#if search_enabled}}
-                <div id="search-wrapper" class="hidden">
-                    <form id="searchbar-outer" class="searchbar-outer">
-                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..."
-                            aria-controls="searchresults-outer" aria-describedby="searchresults-header">
-                    </form>
-                    <div id="searchresults-outer" class="searchresults-outer hidden">
-                        <div id="searchresults-header" class="searchresults-header"></div>
-                        <ul id="searchresults">
-                        </ul>
-                    </div>
-                </div>
-                {{/if}}
-
-                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
-                <script>
-                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
-                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
-                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function (link) {
-                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
-                    });
-                </script>
-
-                <div id="content" class="content">
-                    <main>
-                        {{{ content }}}
-                    </main>
-
-
-                    <nav class="nav-wrapper" aria-label="Page navigation">
-                        <!-- Mobile navigation buttons -->
-                        {{#previous}}
-                        <a rel="prev" href="{{ path_to_root }}{{link}}" class="mobile-nav-chapters previous"
-                            title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
-                            <i class="fa fa-angle-left"></i>
-                        </a>
-                        {{/previous}}
-
-                        {{#next}}
-                        <a rel="next prefetch" href="{{ path_to_root }}{{link}}" class="mobile-nav-chapters next"
-                            title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                            <i class="fa fa-angle-right"></i>
-                        </a>
-                        {{/next}}
-
-                        <div style="clear: both"></div>
-                    </nav>
-                </div>
-                <div id="popup-window" class="popup-window">
-                    <iframe src="about:blank" id="pFrame" frameborder="0"></iframe>
-                </div>
-            </div>
-
-            <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                {{#previous}}
-                <a rel="prev" href="{{ path_to_root }}{{link}}" class="nav-chapters previous" title="Previous chapter"
-                    aria-label="Previous chapter" aria-keyshortcuts="Left">
-                    <i class="fa fa-angle-left"></i>
-                </a>
-                {{/previous}}
-
-                {{#next}}
-                <a rel="next prefetch" href="{{ path_to_root }}{{link}}" class="nav-chapters next" title="Next chapter"
-                    aria-label="Next chapter" aria-keyshortcuts="Right">
-                    <i class="fa fa-angle-right"></i>
-                </a>
-                {{/next}}
-            </nav>
-
+        <mdui-layout-main class="example-layout-main" style="min-height: 100%">
+        <div class="mdui-prose" style="margin-left:20px;margin-right:20px;">
+            {{{ content }}}
         </div>
+
+        <mdui-dialog
+            headline="Study Env"
+            close-on-esc
+            id="study-env-dialog"
+        >
+                    <iframe src="about:blank" style="height:80%;width:99%" id="study-env-iframe"></iframe>
+        </mdui-dialog>
+
+        <script>
+            document.getElementById("open-study-env").addEventListener("click", () => {
+                document.getElementById("study-env-dialog").open = true
+                document.getElementById("study-env-iframe").src = "http://jslinux.cxykevin.top"
+            });
+        </script>
+
+        <div style="height:10em;margin-top:2em;margin-left:2em;margin-right:2em;display:flex">
+            {{#previous}}
+            <mdui-card clickable style="width:49%;height: 100%" href="{{ path_to_root }}{{link}}">
+                <div style="display:flex;font-size:1.5em">
+                    <mdui-icon name="navigate_before" style="font-size:1.5em"></mdui-icon> 上一章
+                </div>
+
+                <div style="text-align:center;font-size:2em">
+                    {{title}}
+                </div>
+            </mdui-card>
+            {{/previous}}
+
+            <div style="flex-grow:1"></div>
+
+            {{#next}}
+            <mdui-card clickable style="width:49%;height: 100%" href="{{ path_to_root }}{{link}}">
+                <div style="display:flex;font-size:1.5em">
+                    <div style="flex-grow:1"></div>下一章<mdui-icon name="navigate_next" style="font-size:1.5em"></mdui-icon> 
+                </div>
+
+                <div style="text-align:center;font-size:2em">
+                    {{title}}
+                </div>
+            </mdui-card>
+            {{/next}}
+        </div>
+        </mdui-layout-main>
 
         {{#if live_reload_endpoint}}
         <!-- Livereload script (if served using the cli tool) -->
@@ -333,61 +191,6 @@
         </script>
         {{/if}}
 
-        {{#if google_analytics}}
-        <!-- Google Analytics Tag -->
-        <script>
-            var localAddrs = ["localhost", "127.0.0.1", ""];
-
-            // make sure we don't activate google analytics if the developer is
-            // inspecting the book locally...
-            if (localAddrs.indexOf(document.location.hostname) === -1) {
-                (function (i, s, o, g, r, a, m) {
-                    i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
-                        (i[r].q = i[r].q || []).push(arguments)
-                    }, i[r].l = 1 * new Date(); a = s.createElement(o),
-                        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
-                })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-
-                ga('create', '{{google_analytics}}', 'auto');
-                ga('send', 'pageview');
-            }
-        </script>
-        {{/if}}
-
-        {{#if playground_line_numbers}}
-        <script>
-            window.playground_line_numbers = true;
-        </script>
-        {{/if}}
-
-        {{#if playground_copyable}}
-        <script>
-            window.playground_copyable = true;
-        </script>
-        {{/if}}
-
-        {{#if playground_js}}
-        <script src="{{ path_to_root }}ace.js"></script>
-        <script src="{{ path_to_root }}editor.js"></script>
-        <script src="{{ path_to_root }}mode-rust.js"></script>
-        <script src="{{ path_to_root }}theme-dawn.js"></script>
-        <script src="{{ path_to_root }}theme-tomorrow_night.js"></script>
-        {{/if}}
-
-        {{#if search_js}}
-        <script src="{{ path_to_root }}elasticlunr.min.js"></script>
-        <script src="{{ path_to_root }}mark.min.js"></script>
-        <script src="{{ path_to_root }}searcher.js"></script>
-        {{/if}}
-
-        <script src="{{ path_to_root }}clipboard.min.js"></script>
-        <script src="{{ path_to_root }}highlight.js"></script>
-        <script src="{{ path_to_root }}book.js"></script>
-
-        <!-- Custom JS scripts -->
-        {{#each additional_js}}
-        <script src="{{ ../path_to_root }}{{this}}"></script>
-        {{/each}}
 
         {{#if is_print}}
         {{#if mathjax_support}}
@@ -406,30 +209,12 @@
         </script>
         {{/if}}
         {{/if}}
+    </mdui-layout>
 
-        <!-- study env -->
-        <!-- https://nj1.mossfrp.cn:52719/ -->
-        <script>
-            var link = "https://jslinux.cxykevin.top/";
-            function stbtn() {
-                if (window.screen.width >= 700) {
-                    var popupWindow = document.getElementById('popup-window');
-                    if (popupWindow.classList.contains('show')) {
-                        popupWindow.classList.remove('show');
-                    } else {
-                        popupWindow.classList.add('show');
-                        if (document.getElementById("pFrame").src === "about:blank")
-                            document.getElementById("pFrame").src = link
-                    }
-                } else {
-                    window.open(link, "_blank");
-                }
-            }
-            document.getElementById('popup-btn').addEventListener('click', stbtn);
+    <!-- 留白 -->
+    <div style="height:2em"></div>
 
-        </script>
-
-    </div>
+    <script>hljs.highlightAll();</script>
 </body>
 
 </html>
