@@ -2,21 +2,19 @@
 
 > 上级目录：[Rocky Linux 初见](../rocky_first_met.md)
 
-在进行安装前我们需要去下载一份 Rocky Linux 的镜像，在[Rocky Linux 初见](../rocky_first_met.md)中有说明，此处不再赘述。
+在进行安装前我们需要去下载一份 Rocky Linux 的镜像，在[Rocky Linux 初见](./install_rocky_linux_intro.md)中有说明，此处不再赘述。
 
-## 0x00 下载并安装 VMWare Workstation Pro
+## 下载并安装 VMWare Workstation Pro
 
-假设说你要安装 Linux 的话,你需要一个虚拟机软件,本部分将使用 VMWare Workstation Pro,一款十分好的多平台虚拟机软件.
-
-> 当然,[VirtualBox](install_in_vbox.md)也一样
+假设说你要安装 Linux 的话,你需要一个虚拟机软件,本部分将使用 VMWare Workstation Pro,一款十分优秀的跨平台虚拟机软件.
 
 假如说你已经安装过了,你完全可以跳过这一段.
 
-这里可能有朋友问,VMWare Workstation Pro(下文简称 VMWW)不是付费的吗?你这样难道想让我们去用盗版?
+> 这里可能有朋友问,VMWare Workstation Pro不是付费的吗?你这样难道想让我们去用盗版?
+>
+> 这点不用担心,因为在 VMware 被博通 Broadcom 收购了之后,博通就宣布 VMWare WorkStation Pro 的 17.5.2 版本对个人用户免费&ensp;~~(什么资本家大发慈悲)~~,所以盗版的事情各位大可不必担心.
 
-这点不用担心,因为在 VMware 被博通 Broadcom 收购了之后,博通就宣布 VMWW 的 17.5.2 版本对个人用户免费&ensp;~~(什么资本家大发慈悲)~~,所以盗版的事情各位大可不必担心.
-
-原本来说,你应该去注册一个博通的账号并且去到 Broadcom Support Portal 搞一大堆麻烦事情,但是我相信各位的精力是有限的,所以说这里直接贴出提取到的下载链接`https://softwareupdate.vmware.com/cds/vmw-desktop/ws/17.5.2/23775571/windows/core/VMware-workstation-17.5.2-23775571.exe.tar`
+原本你应该去注册一个博通的账号并且去到 Broadcom Support Portal 搞一大堆麻烦事情,但是我相信各位的精力是有限的,所以说这里直接贴出提取到的下载链接`https://softwareupdate.vmware.com/cds/vmw-desktop/ws/17.5.2/23775571/windows/core/VMware-workstation-17.5.2-23775571.exe.tar`
 
 在您下载下来之后是一个 tar 文件,如果说您的电脑没有可以解压这种格式的软件,那请您去下载一个名为 7-Zip 的软件`https://7-zip.org/a/7z2407.exe`然后安装,记得关联格式.
 
@@ -24,11 +22,11 @@
 
 ![Keybord Driver](./assets/2.4.vmware.1.png)
 
-然后就可以一路 Next 下去了,安装完成后会有一次重启,在重启完毕后,我们该启动 VMWW,进行下一步安装了.
+然后就可以一路 Next 下去了,安装完成后会有一次重启,在重启完毕后,我们该启动 VMWare WorkStation Pro,进行下一步安装了.
 
-> 假如说这里有朋友发现 VMWW 的页面是英文的,打开 VMWW 的`快捷方式`,在目标后面添加一个" --locale zh_CN"之后重启 VMWW 就好了.
+> 假如说这里有朋友发现 VMWare WorkStation Pro 的页面是英文的,打开 VMWare WorkStation Pro 的`快捷方式`,在目标后面添加一个" --locale zh_CN"之后重启 VMWare WorkStation Pro 就好了.
 
-## 0x01 新建虚拟机
+## 新建虚拟机
 
 很好,现在您已经拥有了一个趁手的工具,那就该干点什么,也就是注入灵魂——操作系统了
 
@@ -87,9 +85,9 @@ CPU数通常只需要填你的CPU核心数的一半就可以了。现在的电�
 
 最后关闭设置页面,点击`完成`,虚拟机就大功告成了!(如果你勾选了`创建后启动此虚拟机`那么则会自动启动)
 
-## 0x03 启动虚拟机
+## 启动虚拟机
 
-假如说您在上一部勾选了`创建后启动此虚拟机`的话,您的虚拟机应该现在已经启动了,但是以防万一,这里还是讲解一下如何在 VMWW 里启动虚拟机:
+假如说您在上一部勾选了`创建后启动此虚拟机`的话,您的虚拟机应该现在已经启动了,但是以防万一,这里还是讲解一下如何在 VMWare WorkStation Pro 里启动虚拟机:
 
 第一步,选中`虚拟机`:
 

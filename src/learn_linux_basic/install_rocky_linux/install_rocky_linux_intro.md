@@ -18,14 +18,14 @@
            在你的电脑安装 ---------
 ```
 
-1. 0x00 下载 ISO
-2. 0x01 以下三种安装方式任选其一
+1. 下载 ISO
+2. 以下三种安装方式任选其一
 
    - [在 VMWare WS 上安装](./install_rocky_linux/install_in_vmware.md)
    - [在 VirtualBox 安装](./install_rocky_linux/install_in_vbox.md)
    - [在你的电脑(实体机)安装](./install_rocky_linux/install_in_your_pc.md)
 
-3. 0x02 [安装 Rocky Linux](./install_rocky_linux/install_rocky_linux.md)
+3. [安装 Rocky Linux](./install_rocky_linux/install_rocky_linux.md)
 
 ## 下载 ISO
 
