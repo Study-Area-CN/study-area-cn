@@ -3,85 +3,11 @@ run-name: Build and Publish book (${{ gitea.actor }})
 on: [push]
 
 jobs:
-  Build:
+  Run:
     runs-on: ubuntu-latest
     steps:
       - name: Info
         run: echo "OS=${{ runner.os }} NAME=${{ gitea.event_name }} REPO=${{ gitea.repository }} BRANCH=${{ gitea.ref }} ST=${{ job.status }} RUNID=${{ gitea.run_id }}"
-      - name: Checkout
-        uses: https://git.hmtsai.cn/actions/checkout@v4
-      - name: Get Hash
-        id: src_hash
-        run: echo "::set-output name=src_hash::$(if [[ $(find src -type f -exec sha256sum {} \; | sha256sum | cut -d ' ' -f 1) = $(cat hash.txt) ]]; then echo run; else echo next; fi)"
-      - name: Cache Node
-        if: ${{ steps.src_hash.outputs.src_hash != 'run' }}
-        uses: https://git.hmtsai.cn/actions/cache@v4
-        id: cache-node
-        env:
-          cache-name: cache-node
-        with:
-          key: ${{ runner.os }}-node
-          path: |
-            /node
-      - name: Prepare node
-        if: ${{ steps.src_hash.outputs.src_hash != 'run' && steps.cache-node.outputs.cache-hit != 'true' }}
-        run: |
-          git clone https://git.hmtsai.cn/cxykevin/study-area-home-action-deps
-          mv study-area-home-action-deps/node-$(uname -m).tar.xz study-area-home-action-deps/node.tar.xz
-          tar xvJf study-area-home-action-deps/node.tar.xz
-          mv node-*-linux-* /node
-          export PATH=/node/bin:$PATH
-          echo $PATH
-      - name: Get npm root
-        if: ${{ steps.src_hash.outputs.src_hash != 'run' }}
-        id: npm_root
-        run: echo "::set-output name=npmroot::$(npm root -g)"
-      - name: Cache Node Moudles
-        if: ${{ steps.src_hash.outputs.src_hash != 'run' }}
-        id: cache-node-moudles
-        uses: https://git.hmtsai.cn/actions/cache@v4
-        env:
-          cache-name: cache-node-moudles
-        with:
-          key: ${{ runner.os }}-node_moudles
-          path: |
-            ${{ steps.npm_root.outputs.npmroot }}
-      - name: Check node
-        if: ${{ steps.src_hash.outputs.src_hash != 'run' }}
-        run: |
-          node -v
-          npm -v
-      - name: Prepare NPM source
-        if: ${{ steps.src_hash.outputs.src_hash != 'run' }}
-        run: |
-          export PATH=/node/bin:$PATH
-          npm config set registry https://registry.npmmirror.com
-      - name: npm install
-        if: ${{ steps.src_hash.outputs.src_hash != 'run' && steps.cache-node-moudles.outputs.cache-hit != 'true' }}
-        run: |
-          export PATH=/node/bin:$PATH
-          npm install -g @lint-md/cli
-      - name: Format
-        if: ${{ steps.src_hash.outputs.src_hash != 'run' }}
-        run: |
-          export PATH=/node/bin:$PATH
-          lint-md src/**/* --threads=8 --fix --suppress-warnings
-      - name: Set hash cache
-        if: ${{ steps.src_hash.outputs.src_hash != 'run' }}
-        run: |
-          echo "$(find src -type f -exec sha256sum {} \; | sha256sum | cut -d ' ' -f 1)" > hash.txt
-      - name: Commit files
-        if: ${{ steps.src_hash.outputs.src_hash != 'run' }}
-        run: |
-          git config --global user.name "studyareacn-format-bot"
-          git config --global user.email "studyareacn-format@noreply.localhost"
-          git remote set-url origin https://${{ secrets.GIT_USER }}:${{ secrets.GIT_PASSWD }}@git.hmtsai.cn/study-area-cn/study-area-cn
-          git add .
-          git commit -m "Auto format"
-          echo "__import__(\"os\").system(\"sh -c \\\"git push\\\"\")" > ezpush.py && python3 ezpush.py
-      - name: "-------------"
-        id: src_hash
-        run: echo "-------------"
       - name: Prepare Source
         run: |
           echo "--- write source ---"
@@ -91,10 +17,12 @@ jobs:
           cat /etc/apt/sources.list
           rm -rf /etc/apt/sources.list.d/*
           echo "--- update source ---"
-          apt-get update
+          apt-get update          
       - name: Prepare Lftp
         run: |
-          apt-get install lftp -y
+          apt-get install lftp -y          
+      - name: Checkout
+        uses: https://git.hmtsai.cn/actions/checkout@v4
       - name: Cache mdbook
         uses: https://git.hmtsai.cn/actions/cache@v4
         id: cache-mdbook
@@ -103,13 +31,13 @@ jobs:
         with:
           key: ${{ runner.os }}-mdbook
           path: |
-            study-area-action-deps
+            study-area-action-deps            
       - name: Get file
         if: ${{ steps.cache-mdbook.outputs.cache-hit != 'true' }}
         run: |
           git clone https://git.hmtsai.cn/cxykevin/study-area-action-deps
           echo "Check..."
-          ls study-area-action-deps
+          ls study-area-action-deps          
       - name: Add permission
         run: chmod +x study-area-action-deps/mdbook-linux-$(uname -m)
       - name: Build mdbook
@@ -122,19 +50,20 @@ jobs:
         with:
           key: mapbook
           path: |
-            mapbook
+            mapbook            
       - name: Get mapbook
         if: ${{ steps.cache-mapbook.outputs.cache-hit != 'true' }}
         run: |
           git clone https://git.hmtsai.cn/cxykevin/mapbook
           echo "Check..."
-          ls mapbook
+          ls mapbook          
       - name: Build sitemap
         run: |
-          python3 mapbook/build.py
+          python3 mapbook/build.py          
       - name: Check book
         run: ls book
       - name: Upload
         run: |
           mv book index
-          lftp ${{ secrets.FTP_SITE }} -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PWD }} -e "mirror -R index index"
+          lftp ${{ secrets.FTP_SITE }} -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PWD }} -e "mirror -R index index"          
+
