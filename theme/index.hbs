@@ -19,24 +19,20 @@
 
     <!-- MDUI CSS&JS -->
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no"/>
-    <meta name="renderer" content="webkit"/>
-
-    <link rel="stylesheet" href="https://unpkg.com/mdui@2/mdui.css">
-    <script src="https://unpkg.com/mdui@2/mdui.global.js"></script>
-
-
-    <!-- Material Icons Font (Filled) -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" />
+    <meta name="renderer" content="webkit" />
+    <link rel="stylesheet" href="{{ ../path_to_root }}theme/css/mdui.css">
+    <script src="{{ ../path_to_root }}theme/js/mdui.global.js"></script>
+    <link href="{{ ../path_to_root }}theme/css/icons.css" rel="stylesheet">
 
     <meta name="description" content="Study Area CN {{ description }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#ffffff">
     <meta name="keywords"
-        content="Study-area, study-area, study-area-cn Study Area CN, study area cn, 酷学园, 酷学园 CN , 酷！学园, netman, linux, mdbook">
+        content="Study-area, study-area, study-area-cn Study Area CN, study area cn, 酷学园, 酷学园 CN , 酷！学园, netman, linux, mdbook, rockylinux">
 
     {{#if favicon_svg}}
-    <link rel="icon" href="{{ path_to_root }}favicon.svg">
+    <link rel="icon" href="{{ path_to_root }}favicon.png">
     {{/if}}
     {{#if favicon_png}}
     <link rel="shortcut icon" href="{{ path_to_root }}favicon.png">
@@ -47,130 +43,118 @@
     {{/if}}
 
     <!-- Highlight.js Stylesheets -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <link rel="stylesheet" href="{{ ../path_to_root }}theme/css/highlight.min.css">
+    <script src="{{ ../path_to_root }}theme/js/highlight.min.js"></script>
 
-    <!-- Custom theme stylesheets -->
-    {{#each additional_css}}
-    <link rel="stylesheet" href="{{ ../path_to_root }}{{ this }}">
-    {{/each}}
+
 
     {{#if mathjax_support}}
     <!-- MathJax -->
-    <script async
-        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async src="{{ ../path_to_root }}theme/js/mathjax.js"></script>
     {{/if}}
 
-    <style>
-    ol,li{
-        list-style:none;
-        font-size:1em;
-    }
-
-    .part-title{
-        font-weight:bold;
-        font-size:1.2em;
-    }
-
-    a {
-        position: relative;
-        text-decoration: none;
-        color: rgb(var(--mdui-color-primary));
-    }
-
-    a:after {
-        content: "";
-        position: absolute;
-        bottom: -2px;
-        left: 50%;
-        width: 0;
-        height: 2px;
-        transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
-        background-color: rgb(var(--mdui-color-primary))
-    }
-
-    a:hover:after {
-        width: 100%;
-        left: 0;
-    }
-    </style>
+    <link rel="stylesheet" href="{{ ../path_to_root }}theme/css/page.css">
 </head>
 
-<body style="margin:0;padding:0;min-height:100%;width:100%"> 
-    <mdui-layout style="height:100%">
-        <mdui-top-app-bar>
+<body style="margin:0;padding:0;">
+    {{#if is_print }}
+    {{#toc}}{{/toc}}
+    {{/if}}
+
+    <mdui-layout>
+        {{#unless is_print }}
+        <mdui-top-app-bar class="topbar" scroll-behavior="elevate">
             <mdui-button-icon icon="menu" id="open-drawer"></mdui-button-icon>
-            <mdui-button id="open-study-env">实验环境</mdui-button>
+            <mdui-button class="hideonmobile" id="open-study-env">实验环境</mdui-button>
             <mdui-top-app-bar-title>{{ book_title }}</mdui-top-app-bar-title>
-                <div style="flex-grow: 1"></div>
+            <div style="flex-grow: 1"></div>
+            {{#previous}}
+            <mdui-button id="previous—page" class="hideonmobile" href="{{ path_to_root }}{{link}}">上一章</mdui-button>
+            {{/previous}}
+            {{#next}}
+            <mdui-button id="next—page" href="{{ path_to_root }}{{link}}">下一章</mdui-button>
+            {{/next}}
             {{#if git_repository_url}}
             <mdui-button-icon icon="web" href="{{git_repository_url}}"></mdui-button-icon>
             {{/if}}
             {{#if print_enable}}
-            <mdui-button-icon href="{{ path_to_root }}print.html" title="Print this book" aria-label="Print this book" icon="print">
+            <mdui-button-icon class="hideonmobile" href="{{ path_to_root }}print.html" title="Print this book"
+                aria-label="Print this book" icon="print">
             </mdui-button-icon>
             {{/if}}
         </mdui-top-app-bar>
 
-        <mdui-navigation-drawer close-on-overlay-click class="toc-drawer">
-        {{#toc}}{{/toc}}
+        <mdui-navigation-drawer close-on-overlay-click class="toc-drawer" id="toc-drawer" placement="left" open>
         </mdui-navigation-drawer>
+        {{/unless}}
 
+
+        {{#unless is_print }}
+        <!-- Render toc -->
+        <div style="display:none;" id="helperframe">
+            {{#toc}}{{/toc}}
+        </div>
+
+        <script src="{{ ../path_to_root }}theme/js/tocrender.js"></script>
+        <!-- Render toc finish -->
+        {{/unless}}
+
+
+        {{#unless is_print }}
         <script>
             const navigationDrawer = document.querySelector(".toc-drawer");
             const openButton = document.getElementById("open-drawer");
 
             openButton.addEventListener("click", () => navigationDrawer.open = !navigationDrawer.open);
         </script>
+        {{/unless}}
 
         <mdui-layout-main class="example-layout-main" style="min-height: 100%">
-        <div class="mdui-prose" style="margin-left:20px;margin-right:20px;">
-            {{{ content }}}
-        </div>
+            <div class="mdui-prose">
+                {{{ content }}}
+            </div>
 
-        <mdui-dialog
-            headline="Study Env"
-            close-on-esc
-            close-on-overlay-click
-            id="study-env-dialog"
-        >
-                    <iframe src="about:blank" style="height:80%;width:99%" id="study-env-iframe"></iframe>
-        </mdui-dialog>
+            {{#unless is_print }}
+            <mdui-dialog headline="Study Env" close-on-esc close-on-overlay-click id="study-env-dialog">
+                <iframe src="about:blank" style="height:80%;width:99%" id="study-env-iframe"></iframe>
+            </mdui-dialog>
 
-        <script>
-            document.getElementById("open-study-env").addEventListener("click", () => {
-                document.getElementById("study-env-dialog").open = true
-                document.getElementById("study-env-iframe").src = "http://jslinux.cxykevin.top"
-            });
-        </script>
+            <script>
+                document.getElementById("open-study-env").addEventListener("click", () => {
+                    document.getElementById("study-env-dialog").open = true
+                    document.getElementById("study-env-iframe").src = "http://jslinux.cxykevin.top"
+                });
+            </script>
+            {{/unless}}
 
-        <div style="height:10em;margin-top:2em;margin-left:2em;margin-right:2em;display:flex">
-            {{#previous}}
-            <mdui-card clickable style="width:49%;height: 100%" href="{{ path_to_root }}{{link}}">
-                <div style="display:flex;font-size:1.5em">
-                    <mdui-icon name="navigate_before" style="font-size:1.5em"></mdui-icon> 上一章
-                </div>
+            <div style="height:10em;display:flex;max-width: 78%;margin: auto;margin-top:2em;">
+                {{#previous}}
+                <mdui-card clickable style="width:49%;height: 100%" href="{{ path_to_root }}{{link}}">
+                    <div style="display:flex;font-size:1.2em;margin-top: 10px;margin-left: 4px;">
+                        <mdui-icon name="navigate_before" style="font-size:1.5em;"></mdui-icon> 上一章
+                    </div>
 
-                <div style="text-align:center;font-size:2em">
-                    {{title}}
-                </div>
-            </mdui-card>
-            {{/previous}}
+                    <div style="text-align:center;font-size:1.8em;margin-top: 12px;">
+                        {{title}}
+                    </div>
+                </mdui-card>
+                {{/previous}}
 
-            <div style="flex-grow:1"></div>
+                <div style="flex-grow:1"></div>
 
-            {{#next}}
-            <mdui-card clickable style="width:49%;height: 100%" href="{{ path_to_root }}{{link}}">
-                <div style="display:flex;font-size:1.5em">
-                    <div style="flex-grow:1"></div>下一章<mdui-icon name="navigate_next" style="font-size:1.5em"></mdui-icon> 
-                </div>
+                {{#next}}
+                <mdui-card clickable style="width:49%;height: 100%" href="{{ path_to_root }}{{link}}">
+                    <div style="display:flex;font-size:1.2em;margin-top: 10px;margin-right: 4px;">
+                        <div style="flex-grow:1"></div>下一章<mdui-icon name="navigate_next"
+                            style="font-size:1.5em"></mdui-icon>
+                    </div>
 
-                <div style="text-align:center;font-size:2em">
-                    {{title}}
-                </div>
-            </mdui-card>
-            {{/next}}
-        </div>
+                    <div style="text-align:center;font-size:1.8em;margin-top: 12px;">
+                        {{title}}
+                    </div>
+                </mdui-card>
+                {{/next}}
+            </div>
         </mdui-layout-main>
 
         {{#if live_reload_endpoint}}
@@ -216,6 +200,7 @@
     <div style="height:2em"></div>
 
     <script>hljs.highlightAll();</script>
+
 </body>
 
 </html>

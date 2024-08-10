@@ -1,0 +1,125 @@
+ol,
+li {
+    list-style: none;
+    font-size: 1em;
+}
+
+.part-title {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+a {
+    position: relative;
+    text-decoration: none;
+    color: rgb(var(--mdui-color-primary));
+}
+
+a:after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+    background-color: rgb(var(--mdui-color-primary))
+}
+
+a:hover:after {
+    width: 100%;
+    left: 0;
+}
+
+h1 {
+    margin-top: 0px !important;
+    margin-bottom: 20px !important;
+}
+
+h2 {
+    margin-top: 30px !important;
+    margin-bottom: 15px !important;
+}
+
+.container {
+    min-height: 1rem !important;
+}
+
+.menu-link {
+    color: rgb(var(--mdui-color-on-surface));
+}
+
+.menu-link:after {
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: rgb(var(--mdui-color-primary));
+    transition: width 0.2s ease-in-out, left 0.2s ease-in-out;
+}
+
+.menu-link:hover:after {
+    width: calc(100% - 20px);
+    left: 20px;
+}
+
+.topbar {
+    position: fixed !important;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+}
+
+.mdui-prose {
+    margin-left: 50px;
+    margin-right: 50px;
+    max-width: 78%;
+    margin: auto;
+    left: 0;
+    right: 0;
+}
+
+.toc-drawer {
+    position: fixed !important;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+}
+
+.bottombar {
+    height: 10em !important;
+    margin-top: 2em !important;
+    margin-left: 2em !important;
+    margin-right: 2em !important;
+    display: flex !important;
+}
+
+.prevpage {
+    display: flex !important;
+    font-size: 1.2em !important;
+    margin-top: 10px !important;
+    margin-left: 4px !important;
+}
+
+.nextpage {
+    display: flex !important;
+    font-size: 1.2em !important;
+    margin-top: 10px !important;
+    margin-right: 4px !important;
+}
+
+hr {
+    margin-top: 16px !important;
+    margin-bottom: 16px !important;
+}
+
+@media (max-width: 641px) {
+    .hideonmobile {
+        display: none !important;
+    }
+}
+
+@media (min-width: 640px) {
+    .hideonmobile {
+        display: inline-flex !important;
+    }
+}

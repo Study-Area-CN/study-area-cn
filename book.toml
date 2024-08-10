@@ -4,3 +4,18 @@ language = "zh-cn"
 multilingual = false
 src = "src"
 title = "Study Area CN"
+
+[output.html]
+additional-css = [
+    "theme/css/icons.css",
+    "theme/css/mdui.css",
+    "theme/css/highlight.min.css",
+    "theme/css/page.css",
+    "theme/font/icons.woff2",
+]
+additional-js = [
+    "theme/js/mdui.global.js",
+    "theme/js/highlight.min.js",
+    "theme/js/mathjax.js",
+    "theme/js/tocrender.js",
+]
