@@ -18,4 +18,5 @@ additional-js = [
     "theme/js/highlight.min.js",
     "theme/js/mathjax.js",
     "theme/js/tocrender.js",
+    "theme/js/page.js",
 ]
