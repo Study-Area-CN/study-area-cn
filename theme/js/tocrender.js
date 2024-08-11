@@ -42,7 +42,7 @@ function loadTreeItem(treeitem, v) {
 
     if (treeitem.child.length > 0) {
         var i_str = `<mdui-collapse-item value=item"` + v.toString() + `">
-            <mdui-list-item rounded slot="header" `+ active_str + `><a href="` + treeitem.link + `" class="menu-link">` + treeitem.text + `</a><mdui-icon slot="end-icon" name="keyboard_arrow_down"></mdui-icon></mdui-list-item>
+            <mdui-list-item rounded slot="header" search_link="` + treeitem.link + `" ` + active_str + `><a href="javascript:void(0);" onclick="setPage('` + treeitem.link + `')" class="menu-link">` + treeitem.text + `</a><mdui-icon slot="end-icon" name="keyboard_arrow_down"></mdui-icon></mdui-list-item>
             <div style="margin-left: 1rem">
                 <mdui-list-item rounded>
                     <mdui-collapse>`
@@ -58,19 +58,22 @@ function loadTreeItem(treeitem, v) {
         return i_str
     } else {
         disabled = treeitem.link === '#' ? "disabled" : ""
-        return `<mdui-collapse-item><mdui-list-item rounded ` + active_str + ` slot="header" ` + disabled + ` href="` + treeitem.link + `">` + treeitem.text + `</mdui-list-item></mdui-collapse-item>`
+        return `<mdui-collapse-item><mdui-list-item rounded search_link="` + treeitem.link + `" ` + active_str + ` slot="header" ` + disabled + ` href="javascript:void(0);" onclick="setPage('` + treeitem.link + `')">` + treeitem.text + `</mdui-list-item></mdui-collapse-item>`
     }
 }
-var get_tree = createTree(toc_obj)
-var n_str = `<mdui-list><mdui-collapse>`
-var i = 0
-get_tree.forEach(element => {
-    n_str = n_str + loadTreeItem(element, i)
-    i++
-})
-n_str = n_str + `</mdui-collapse></mdui-list>`
+function getResult(obj) {
+    var get_tree = createTree(obj)
+    var n_str = `<mdui-list><mdui-collapse>`
+    var i = 0
+    get_tree.forEach(element => {
+        n_str = n_str + loadTreeItem(element, i)
+        i++
+    })
+    n_str = n_str + `</mdui-collapse></mdui-list>`
+    return n_str
+}
 
-document.getElementById("toc-drawer").insertAdjacentHTML('beforeend', n_str);
+document.getElementById("toc-drawer").insertAdjacentHTML('beforeend', getResult(toc_obj));
 
 document.getElementById("helperframe").remove()
 

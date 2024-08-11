@@ -32,10 +32,10 @@
         content="Study-area, study-area, study-area-cn Study Area CN, study area cn, 酷学园, 酷学园 CN , 酷！学园, netman, linux, mdbook, rockylinux">
 
     {{#if favicon_svg}}
-    <link rel="icon" href="{{ path_to_root }}favicon.png">
+    <link rel="icon" href="favicon.png">
     {{/if}}
     {{#if favicon_png}}
-    <link rel="shortcut icon" href="{{ path_to_root }}favicon.png">
+    <link rel="shortcut icon" href="favicon.png">
     {{/if}}
 
     {{#if print_enable}}
@@ -69,10 +69,14 @@
             <mdui-top-app-bar-title>{{ book_title }}</mdui-top-app-bar-title>
             <div style="flex-grow: 1"></div>
             {{#previous}}
-            <mdui-button id="previous—page" class="hideonmobile" href="{{ path_to_root }}{{link}}">上一章</mdui-button>
+            <mdui-button id="previous—page" class="hideonmobile" href="javascript:void(0);"
+                onclick="prevPage()">上一章</mdui-button>
+            <a style="display:none;" href="{{ path_to_root }}{{link}}" id="helper_prevpage" class="helper"></a>
             {{/previous}}
             {{#next}}
-            <mdui-button id="next—page" href="{{ path_to_root }}{{link}}">下一章</mdui-button>
+            <mdui-button id="next—page" class="next—page" href="javascript:void(0);"
+                onclick="nextPage()">下一章</mdui-button>
+            <a style="display:none;" href="{{ path_to_root }}{{link}}" id="helper_nextpage" class="next—pagehelper"></a>
             {{/next}}
             {{#if git_repository_url}}
             <mdui-button-icon icon="web" href="{{git_repository_url}}"></mdui-button-icon>
@@ -91,13 +95,14 @@
 
         {{#unless is_print }}
         <!-- Render toc -->
-        <div style="display:none;" id="helperframe">
+        <div style="display:none;" id="helperframe" class="helperframe">
             {{#toc}}{{/toc}}
         </div>
 
         <script src="{{ ../path_to_root }}theme/js/tocrender.js"></script>
         <!-- Render toc finish -->
         {{/unless}}
+
 
 
         {{#unless is_print }}
@@ -129,7 +134,7 @@
 
             <div style="height:10em;display:flex;max-width: 78%;margin: auto;margin-top:2em;">
                 {{#previous}}
-                <mdui-card clickable style="width:49%;height: 100%" href="{{ path_to_root }}{{link}}">
+                <mdui-card clickable style="width:49%;height: 100%" href="javascript:void(0);" onclick="nextPage()">
                     <div style="display:flex;font-size:1.2em;margin-top: 10px;margin-left: 4px;">
                         <mdui-icon name="navigate_before" style="font-size:1.5em;"></mdui-icon> 上一章
                     </div>
@@ -143,7 +148,7 @@
                 <div style="flex-grow:1"></div>
 
                 {{#next}}
-                <mdui-card clickable style="width:49%;height: 100%" href="{{ path_to_root }}{{link}}">
+                <mdui-card clickable style="width:49%;height: 100%" href="javascript:void(0);" onclick="nextPage()">
                     <div style="display:flex;font-size:1.2em;margin-top: 10px;margin-right: 4px;">
                         <div style="flex-grow:1"></div>下一章<mdui-icon name="navigate_next"
                             style="font-size:1.5em"></mdui-icon>
