@@ -46,7 +46,7 @@ function changePage(url) {
             var title = virtualtag.getElementsByTagName("title")[0].innerText;
             old_tag.innerHTML = virtualtag.getElementsByClassName("mdui-prose")[0].innerHTML;
             old_topbar_tag.innerHTML = virtualtag.getElementsByClassName("topbar")[0].innerHTML;
-            old_navcard_tag.innerHTML = document.getElementById("navcard").innerHTML;
+            old_navcard_tag.innerHTML = virtualtag.getElementById("navcard").innerHTML;
 
             var elements = document.querySelectorAll('[active]');
             elements.forEach(element => {
