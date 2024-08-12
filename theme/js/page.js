@@ -39,13 +39,13 @@ function changePage(url) {
             document.body.scrollTop = 0;
 
             var old_tag = document.getElementsByClassName("mdui-prose")[0];
-            var old_topbar_tag = document.getElementsByClassName("topbar")[0];
+            var old_topbar_tag = document.getElementsByClassName("navbtn")[0];
             var old_navcard_tag = document.getElementsByClassName("navcard")[0];
             var virtualtag = document.createElement('div');
             virtualtag.insertAdjacentHTML('beforeend', xhr.responseText);
             var title = virtualtag.getElementsByTagName("title")[0].innerText;
             old_tag.innerHTML = virtualtag.getElementsByClassName("mdui-prose")[0].innerHTML;
-            old_topbar_tag.innerHTML = virtualtag.getElementsByClassName("topbar")[0].innerHTML;
+            old_topbar_tag.innerHTML = virtualtag.getElementsByClassName("navbtn")[0].innerHTML;
             old_navcard_tag.innerHTML = virtualtag.getElementsByClassName("navcard")[0].innerHTML;
 
             var elements = document.querySelectorAll('[active]');

@@ -68,9 +68,10 @@
             <mdui-button class="hideonmobile" id="open-study-env">实验环境</mdui-button>
             <mdui-top-app-bar-title>{{ book_title }}</mdui-top-app-bar-title>
             <div style="flex-grow: 1"></div>
+            <div class="navbtn" style="display: flex;">
             {{#previous}}
             <mdui-button id="previous—page" class="hideonmobile" href="javascript:void(0);"
-                onclick="prevPage()">上一章</mdui-button>
+                onclick="prevPage()" style="margin-right:8px;">上一章</mdui-button>
             <a style="display:none;" href="{{ path_to_root }}{{link}}" id="helper_prevpage" class="helper"></a>
             {{/previous}}
             {{#next}}
@@ -78,6 +79,7 @@
                 onclick="nextPage()">下一章</mdui-button>
             <a style="display:none;" href="{{ path_to_root }}{{link}}" id="helper_nextpage" class="next—pagehelper"></a>
             {{/next}}
+            </div>
             {{#if git_repository_url}}
             <mdui-button-icon icon="web" href="{{git_repository_url}}"></mdui-button-icon>
             {{/if}}
