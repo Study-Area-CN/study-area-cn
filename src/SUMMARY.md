@@ -37,7 +37,7 @@
 - [文件与路径](./learn_linux_basic/file_and_path/file_and_path.md)
   - [文件权限管理](./learn_linux_basic/file_and_path/manage_file_premissons.md)
   - [磁盘分区以及文件系统](./learn_linux_basic/file_and_path/diskpart_and_filesystem.md)
-  - [tar打包软件]()
+  - [tar打包软件](./learn_linux_basic/file_and_path/tar_command.md)
   - [gzip与xz]()
   - [备份]()
 - [Shell与Shell Script]()
