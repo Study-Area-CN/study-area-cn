@@ -33,10 +33,10 @@
 - `/tmp` 存放一些临时文件，通常被挂载到了内存
 - `/usr` 包含系统核心文件，其中的`bin`目录包含的上述除`cd`外的所有命令，`sbin`也是（仅限 root 的命令），这两个文件夹还被映射到了根目录同名文件夹。
 - `/var` 可变动的文件(variable)
-    - `/var/mail` (本地邮件信箱)
-    - `/var/spool/news` (新闻组)
-    - `/var/run` (程序相关文件)
-    - `/var/lock` (程序锁相關)
+  - `/var/mail` (本地邮件信箱)
+  - `/var/spool/news` (新闻组)
+  - `/var/run` (程序相关文件)
+  - `/var/lock` (程序锁相關)
 - `/sys` 也是一个重要的设备目录
 - `/home` 用户目录，相当于 `C:\Users`（MacOS：`/Users`）
 
