@@ -37,6 +37,8 @@
 - [文件与路径](./learn_linux_basic/file_and_path/file_and_path.md)
   - [文件权限管理](./learn_linux_basic/file_and_path/manage_file_premissons.md)
   - [磁盘分区以及文件系统](./learn_linux_basic/file_and_path/diskpart_and_filesystem.md)
+    - [在 VMWare Workstation 上创建虚拟磁盘](./learn_linux_basic/file_and_path/diskpart_and_filesystem/create_disk_on_vmware.md)
+    - [在 VirtualBox 上创建虚拟磁盘](./learn_linux_basic/file_and_path/diskpart_and_filesystem/create_disk_on_vbox.md)
   - [tar打包软件](./learn_linux_basic/file_and_path/tar_command.md)
   - [gzip与xz](./learn_linux_basic/file_and_path/gzip_and_xz.md)
   - [备份]()
