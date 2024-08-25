@@ -1,0 +1,21 @@
+@font-face {
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 300;
+    src: local("NotoSansCJK-Medium") url('../font/noto.otf') format('otf');
+}
+
+@font-face {
+    font-family: 'Source Code Pro';
+    font-style: normal;
+    font-weight: 300;
+    src: local("SourceCodePro") url('../font/sourcecodepro.woff2') format('woff2');
+}
+
+body {
+    font-family: 'Noto Sans', sans-serif !important;
+}
+
+code {
+    font-family: 'Source Code Pro', 'Courier New', monospace !important;
+}

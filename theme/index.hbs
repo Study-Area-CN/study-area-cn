@@ -3,7 +3,7 @@
 
 <head>
     <meta NAME="ROBOTS" CONTENT="INDEX,FOLLOW">
-    <!-- Book generated using mdBook -->
+    <!-- mdbook 内容 -->
     <meta charset="UTF-8">
     <title>{{ title }}</title>
     {{#if is_print }}
@@ -14,28 +14,29 @@
     {{/if}}
 
 
-    <!-- Custom HTML head -->
+    <!-- 自定义头部 html -->
     {{> head}}
 
     <!-- MDUI CSS&JS -->
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="renderer" content="webkit" />
     <link rel="stylesheet" href="{{ ../path_to_root }}theme/css/mdui.css">
     <script src="{{ ../path_to_root }}theme/js/mdui.global.js"></script>
     <link href="{{ ../path_to_root }}theme/css/icons.css" rel="stylesheet">
 
+    <!-- 搜索引擎描述 -->
     <meta name="description" content="Study Area CN {{ description }}">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#ffffff">
     <meta name="keywords"
         content="Study-area, study-area, study-area-cn Study Area CN, study area cn, 酷学园, 酷学园 CN , 酷！学园, netman, linux, mdbook, rockylinux">
 
+    <!-- favicon -->
     {{#if favicon_svg}}
-    <link rel="icon" href="{{ path_to_root }}favicon.png">
+    <link rel="icon" href="{{ ../path_to_root }}favicon.png">
     {{/if}}
     {{#if favicon_png}}
-    <link rel="shortcut icon" href="{{ path_to_root }}favicon.png">
+    <link rel="shortcut icon" href="{{ ../path_to_root }}favicon.png">
     {{/if}}
 
     {{#if print_enable}}
@@ -46,43 +47,54 @@
     <link rel="stylesheet" href="{{ ../path_to_root }}theme/css/highlight.min.css">
     <script src="{{ ../path_to_root }}theme/js/highlight.min.js"></script>
 
-
-
     {{#if mathjax_support}}
     <!-- MathJax -->
     <script async src="{{ ../path_to_root }}theme/js/mathjax.js"></script>
     {{/if}}
 
     <link rel="stylesheet" href="{{ ../path_to_root }}theme/css/page.css">
+
+    <!-- 自定义字体 -->
+    <link href="{{ ../path_to_root }}theme/css/font.css" rel="stylesheet">
 </head>
 
 <body style="margin:0;padding:0;">
+    <!-- 打印页面输出目录 -->
     {{#if is_print }}
     {{#toc}}{{/toc}}
     {{/if}}
 
     <mdui-layout>
         {{#unless is_print }}
+        <!-- 顶栏 -->
         <mdui-top-app-bar class="topbar" scroll-behavior="elevate">
             <mdui-button-icon icon="menu" id="open-drawer"></mdui-button-icon>
             <mdui-button class="hideonmobile" id="open-study-env">实验环境</mdui-button>
             <mdui-top-app-bar-title>{{ book_title }}</mdui-top-app-bar-title>
-            <div style="flex-grow: 1"></div>
+
+            <div style="flex-grow: 1"></div> <!-- 横向填充 -->
+
+            <!-- 翻页 -->
             <div class="navbtn" style="display: flex;">
-            {{#previous}}
-            <mdui-button id="previous—page" class="hideonmobile" href="javascript:void(0);"
-                onclick="prevPage()" style="margin-right:8px;">上一章</mdui-button>
-            <a style="display:none;" href="{{ path_to_root }}{{link}}" id="helper_prevpage" class="helper"></a>
-            {{/previous}}
-            {{#next}}
-            <mdui-button id="next—page" class="next—page" href="javascript:void(0);"
-                onclick="nextPage()">下一章</mdui-button>
-            <a style="display:none;" href="{{ path_to_root }}{{link}}" id="helper_nextpage" class="next—pagehelper"></a>
-            {{/next}}
+                {{#previous}}
+                <mdui-button id="previous—page" class="hideonmobile" href="javascript:void(0);" onclick="prevPage()"
+                    style="margin-right:8px;">上一章</mdui-button>
+                <a style="display:none;" href="{{ path_to_root }}{{link}}" id="helper_prevpage" class="helper"></a>
+                {{/previous}}
+                {{#next}}
+                <mdui-button id="next—page" class="next—page" href="javascript:void(0);"
+                    onclick="nextPage()">下一章</mdui-button>
+                <a style="display:none;" href="{{ path_to_root }}{{link}}" id="helper_nextpage"
+                    class="next—pagehelper"></a>
+                {{/next}}
             </div>
+
+            <!-- 仓库按钮 -->
             {{#if git_repository_url}}
             <mdui-button-icon icon="web" href="{{git_repository_url}}"></mdui-button-icon>
             {{/if}}
+
+            <!-- 打印按钮 -->
             {{#if print_enable}}
             <mdui-button-icon class="hideonmobile" href="{{ path_to_root }}print.html" title="Print this book"
                 aria-label="Print this book" icon="print">
@@ -90,7 +102,9 @@
             {{/if}}
         </mdui-top-app-bar>
 
+        <!-- 菜单栏 -->
         <mdui-navigation-drawer close-on-overlay-click class="toc-drawer" id="toc-drawer" placement="left">
+            <!-- JS 填充内容 -->
         </mdui-navigation-drawer>
         {{/unless}}
 
@@ -105,8 +119,7 @@
         <!-- Render toc finish -->
         {{/unless}}
 
-
-
+        <!-- 展开菜单按钮 -->
         {{#unless is_print }}
         <script>
             const navigationDrawer = document.querySelector(".toc-drawer");
@@ -116,11 +129,15 @@
         </script>
         {{/unless}}
 
+        <!-- 主要内容 -->
         <mdui-layout-main class="example-layout-main" style="min-height: 100%">
+
+            <!-- 内容区 -->
             <div class="mdui-prose">
                 {{{ content }}}
             </div>
 
+            <!-- 学习环境页面 -->
             {{#unless is_print }}
             <mdui-dialog headline="Study Env" close-on-esc close-on-overlay-click id="study-env-dialog">
                 <iframe src="about:blank" style="height:80%;width:99%" id="study-env-iframe"></iframe>
@@ -134,6 +151,7 @@
             </script>
             {{/unless}}
 
+            <!-- 下部翻页按钮 -->
             <div class="navcard" style="height:10em;display:flex;max-width: 78%;margin: auto;margin-top:2em;">
                 {{#previous}}
                 <mdui-card clickable style="width:49%;height: 100%" href="javascript:void(0);" onclick="prevPage()">
@@ -164,6 +182,7 @@
             </div>
         </mdui-layout-main>
 
+        <!-- 动态更新内容 -->
         {{#if live_reload_endpoint}}
         <!-- Livereload script (if served using the cli tool) -->
         <script>
@@ -206,8 +225,14 @@
     <!-- 留白 -->
     <div style="height:2em"></div>
 
-    <script>hljs.highlightAll();</script>
+    <!-- 高亮 -->
+    <script>
+        window.addEventListener('load', function () {
+            hljs.highlightAll();
+        }); 
+    </script>
 
+    <!-- 页面 JS -->
     <script src="{{ ../path_to_root }}theme/js/page.js"></script>
 
 </body>
