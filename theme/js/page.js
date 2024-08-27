@@ -2,6 +2,26 @@ if (window.innerWidth > 640) { // 自动展开导航栏
     document.getElementById("toc-drawer").setAttribute('open', true);
 }
 
+// 细节修复
+function update_text() {
+    console.log(1)
+    // 修复 table
+    var tables = document.getElementsByTagName("table")
+    if (tables != undefined) {
+        for (let i = 0; i < tables.length; i++) {
+            tables[i].parentNode.classList.add('mdui-table');
+        }
+    }
+
+    // 修复 hr
+    var hrs = document.getElementsByTagName("hr")
+    if (hrs != undefined) {
+        for (let i = 0; i < hrs.length; i++) {
+            hrs[i].replaceWith(document.createElement("mdui-divider"));
+        }
+    }
+}
+
 function prevPage() {
     var link = document.getElementById("helper_prevpage").href;
 
@@ -71,6 +91,9 @@ function changePage(url) {
 
             // 刷新高亮
             hljs.highlightAll();
+
+            // 修复内容
+            update_text();
         }
     };
     // 发送 XHR
@@ -83,3 +106,5 @@ window.addEventListener('popstate', function (event) {
     console.log('pop state:', window.location.protocol + "//" + window.location.host + location.pathname);
     changePage(window.location.protocol + "//" + window.location.host + location.pathname);
 });
+
+update_text();
