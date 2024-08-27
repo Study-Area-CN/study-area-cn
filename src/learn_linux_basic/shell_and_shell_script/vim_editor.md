@@ -169,7 +169,7 @@ Vim 有一个最基本的东西“模式”，在不同模式下，快捷键的�
 
 下面是一些常用配置：
 
-```vim
+```text
 :set number              "启用行号
 :set autoindent          "自动缩进
 :set autoread            "如果文件有更改自动更新文件
