@@ -14,6 +14,7 @@ additional-css = [
     "theme/css/font.css",
     "theme/font/icons.woff2",
     "theme/font/noto.otf",
+    "theme/font/sourcecodepro.woff2",
 ]
 additional-js = [
     "theme/js/mdui.global.js",
