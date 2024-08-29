@@ -49,15 +49,15 @@ sudo tar -zcvf etc_backup.gz etc
 
 ## `rsync`命令
 
-在之前的章节中，我们创建了一个新的虚拟磁盘。现在，让我们挂载它到`/backup`进行备份。
+在之前的章节中，我们创建了一个新的虚拟磁盘。现在，让我们挂载它到`/mnt/backup`进行备份。
+
+> 如果你完成了之前的课后作业，那么sdb上应该有唯一的一个xfs分区占满了整个磁盘。如果你已经持久挂载了磁盘，本步骤可以跳过。
 
 ```sh
-sudo mkdir /backup
-sudo mount /dev/sdb1 /backup
-sudo mkdir /backup/etc
+sudo mkdir /mnt/backup
+sudo mount /dev/sdb1 /mnt/backup
+sudo mkdir /mnt/backup/etc
 ```
-
-> 如果你完成了所有的课后作业，那么sdb上应该有唯一的一个xfs分区占满了整个磁盘。
 
 现在，我们使用`rsync`命令，将虚拟磁盘中的文件复制到新的虚拟磁盘上。
 
@@ -75,4 +75,5 @@ sudo rsync -avz /etc /backup/etc
 
 `rsync`命令会自动判断源文件和目标文件是否相同，如果相同，则不会进行复制。如果不同，则会复制不同的文件。
 
-> `rsync`命令是一个非常强大的命令，它不仅可以进行文件复制，还可以进行文件的同步、文件的删除等操作。如果你需要备份大量的文件，那么`rsync`命令是一个非常好的选择。
+> `rsync`命令是一个非常强大的命令，它不仅可以进行文件复制，还可以联网进行文件的同步、文件的删除等操作。如果你需要备份大量的文件，那么`rsync`命令是一个非常好的选择。
+
