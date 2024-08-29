@@ -62,7 +62,7 @@ sudo mkdir /mnt/backup/etc
 现在，我们使用`rsync`命令，将虚拟磁盘中的文件复制到新的虚拟磁盘上。
 
 ```sh
-sudo rsync -avz /etc /backup/etc
+sudo rsync -avz /etc /mnt/backup/etc
 ```
 
 `rsync`命令的参数如下：
@@ -71,7 +71,7 @@ sudo rsync -avz /etc /backup/etc
 - `-v`：显示详细输出。
 - `-z`：压缩传输的数据。
 - `/etc`：源文件。
-- `/backup/etc`：目标文件。
+- `/mnt/backup/etc`：目标文件。
 
 `rsync`命令会自动判断源文件和目标文件是否相同，如果相同，则不会进行复制。如果不同，则会复制不同的文件。
 
