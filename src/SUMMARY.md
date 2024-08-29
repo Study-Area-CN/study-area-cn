@@ -41,7 +41,7 @@
     - [在 VirtualBox 上创建虚拟磁盘](./learn_linux_basic/file_and_path/diskpart_and_filesystem/create_disk_on_vbox.md)
   - [tar打包软件](./learn_linux_basic/file_and_path/tar_command.md)
   - [gzip与xz](./learn_linux_basic/file_and_path/gzip_and_xz.md)
-  - [备份]()
+  - [备份](./learn_linux_basic/file_and_path/backup.md)
 - [Shell与Shell Script](./learn_linux_basic/shell_and_shell_script/shell_and_shell_script.md)
   - [学习Shell](./learn_linux_basic/shell_and_shell_script/learn_shell.md)
   - [Vim编辑器](./learn_linux_basic/shell_and_shell_script/vim_editor.md)
