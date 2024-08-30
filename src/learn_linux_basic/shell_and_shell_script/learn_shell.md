@@ -1,4 +1,4 @@
-# 学习 Shell
+# 学习 Shell。
 
 ## 概念
 
@@ -38,7 +38,7 @@ Shell 也有快捷键？是的。大多数 Shell 都支持以下的快捷键：
 
 一条 Shell 的指令的标准格式为：
 
-```sh
+```bash
 command [options] [arguments]
 ```
 
@@ -56,13 +56,13 @@ Shell 中的变量分为环境变量和用户变量，环境变量是Shell启动
 
 用户变量可以通过 `export` 命令设置为临时环境变量，例如：
 
-```sh
+```bash
 export GREET="Hello, World!"
 ```
 
 然后我们在这个 Shell 里启动一个新的 Shell，仍然可以在环境中找到这个变量。
 
-```sh
+```bash
 bash -c 'echo $GREET'
 ```
 
@@ -70,13 +70,13 @@ bash -c 'echo $GREET'
 
 用户变量可以通过 `declare` 命令声明，例如：
 
-```sh
+```bash
 declare USER_GREET="Hello, Shell"
 ```
 
 变量可以通过 `${}` 或 `$` 符号来引用，例如：
 
-```sh
+```bash
 echo ${GREET}
 echo $USER_GREET
 ```
@@ -101,13 +101,13 @@ Shell 中有一些特殊的环境变量，它们在 Shell 启动时自动设置�
 
 Shell 中的管道是链接两个命令的方式，管道遵守下面的格式。
 
-```sh
+```bash
 command1 | command2
 ```
 
 `command1` 的输出将会作为 `command2` 的输入提供，例如：
 
-```sh
+```bash
 ls -a | grep "test"
 ```
 
@@ -117,13 +117,13 @@ ls -a | grep "test"
 
 Shell 中的重定向是改变命令的输出地点的方式，重定向遵守下面的格式。
 
-```sh
+```bash
 command > file
 ```
 
 `command` 的输出将会被重定向到 `file` 中，例如：
 
-```sh
+```bash
 ls -a > files.txt
 ```
 
@@ -133,13 +133,13 @@ ls -a > files.txt
 
 Shell 中的输入重定向是改变命令的输入地点的方式，输入重定向遵守下面的格式。
 
-```sh
+```bash
 command < file
 ```
 
 `command` 的输入将会被重定向到 `file` 中，例如：
 
-```sh
+```bash
 cat < files.txt
 ```
 
@@ -151,7 +151,7 @@ cat < files.txt
 
 运算符 `$()` 可以将命令的输出作为参数，它的标准格式如下：
 
-```sh
+```bash
 command1 $(command2)
 ```
 
@@ -159,7 +159,7 @@ command1 $(command2)
 
 实现前文的场景所需的命令如下：
 
-```sh
+```bash
 ls -l $(cat files.txt)
 ```
 
