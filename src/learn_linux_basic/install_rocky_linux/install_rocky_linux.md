@@ -135,10 +135,6 @@
 ![Shutdown](./assets/2.4.install.17.png)
 ![Shutdown Dialog](./assets/2.4.install.18.png)
 
-## 0x07 换源
-
-//TODO:待补充...
-
 ---
 
 > study-area-cn
