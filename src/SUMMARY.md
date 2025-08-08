@@ -24,7 +24,7 @@
 
 # 学习 Linux 基础
 
-- [初识 Linux](./learn_linux_basic/the_linux_learning_path.md)
+- [初识 Linux]()
   - [漫谈 Linux 学习之路](./learn_linux_basic/the_linux_learning_path.md)
   - [Linux 的发展历程](./learn_linux_basic/the_history_of_linux.md)
   - [Linux 发行版](./learn_linux_basic/linux_distro.md)
