@@ -2,10 +2,8 @@ stages:
   - build
 
 build-job: 
-  tag: 
-    - linux
-    - docker
-    - x86-64
+  stage: build
+  tags: [linux, docker, x86-64]
   script:
     - echo "build job start"
     - echo "build ok"
