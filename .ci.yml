@@ -1,9 +1,35 @@
 stages:
   - build
-
+  - pages
 build-job: 
   stage: build
   tags: [linux, docker, x86-64]
+  image: rust
   script:
     - echo "build job start"
+    - cargo install mdbook
+    - mdbook build
     - echo "build ok"
+  artifacts:
+    paths:
+      - "book"
+    untracked: false
+    when: on_success
+    access: all
+    expire_in: 30 days
+
+pages:
+  stage: pages
+  needs:
+    - build-job
+  script:
+    - echo "pages start"
+    - mv book/* public/*
+    - echo "pages ok"
+  artifacts:
+    paths:
+      - "public"
+    untracked: false
+    when: on_success
+    access: all
+    expire_in: 30 days
