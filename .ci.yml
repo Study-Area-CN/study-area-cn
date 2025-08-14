@@ -12,8 +12,14 @@ build-job:
       - $HOME/.cargo/git
       - target
   before_script: |
+  
     export HTTP_PROXY=$PROXY_URL
     export HTTPS_PROXY=$PROXY_URL
+    export SITE_URL=https://study-area-cn-6fb7da.code-dev.cloud/
+    export SITE_RSS_CONTENT_DIR=src
+    export SITE_RSS_OUT_FILE=book/rss.xml
+    export SITE_SITE_MAP_FILE=book/sitemap.xml
+
     rm -rf /etc/apt/sources.list
     mkdir -vp ${CARGO_HOME:-$HOME/.cargo}
 
@@ -24,6 +30,7 @@ build-job:
     
   script:
     - echo "build job start"
+    - echo "mdbook build start"
     - pwd
     - ls -l
     - apt-get update   
@@ -35,6 +42,16 @@ build-job:
     - cargo install mdbook
     - mdbook build
     - ls -l book
+    - echo "mdbook build ok"
+    - echo "rss build start"
+    - cd lib
+    - npm config set registry https://registry.npmmirror.com
+    - npm get registry
+    - npm install 
+    - npm run build
+    - npm run build:rss
+    - cd ..
+    - ls -la book/rss.xml
     - echo "build ok"
   artifacts:
     paths:

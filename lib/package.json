@@ -1,0 +1,20 @@
+{
+  "name": "lib",
+  "version": "1.0.0",
+  "description": "",
+  "license": "MIT",
+  "author": "",
+  "type": "commonjs",
+  "main": "dist/main.js",
+  "scripts": {
+    "build": "tsc",
+    "build:rss": "node dist/generate-rss.js"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.1",
+    "typescript": "^5.9.2"
+  },
+  "devDependencies": {
+    "@types/node": "^24.2.1"
+  }
+}
