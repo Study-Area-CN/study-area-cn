@@ -23,15 +23,17 @@ build-job:
 
   script:
     - echo "build job start"
+    - pwd
+    - ls -l
     - apt-get update   
     - apt install cargo rustc
     - cargo install mdbook
     - mdbook build
-    - ls
+    - ls -l book
     - echo "build ok"
   artifacts:
     paths:
-      - "book/*"
+      - "book"
     untracked: false
     when: on_success
     access: all
