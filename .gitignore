@@ -1,3 +1,6 @@
+/.vscode/
+/.idea/
+.DS_Store
 book
 node
 study-area-home-action-deps
