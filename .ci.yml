@@ -4,9 +4,18 @@ stages:
 build-job: 
   stage: build
   tags: [linux, docker, x86-64]
-  image: rust:latest
+  image: node:22
   script:
     - echo "build job start"
+    - echo "--- write source ---"
+    - echo "deb http://mirrors.tuna.tsinghua.edu.cn/debian/ bullseye main contrib non-free">/etc/apt/sources.list
+    - echo "deb http://mirrors.tuna.tsinghua.edu.cn/debian/ bullseye-updates main contrib non-free">>/etc/apt/sources.list
+    - echo "deb http://mirrors.tuna.tsinghua.edu.cn/debian/ bullseye-backports main contrib non-free">>/etc/apt/sources.list
+    - cat /etc/apt/sources.list
+    - rm -rf /etc/apt/sources.list.d/*
+    - echo "--- update source ---"
+    - apt-get update   
+    - apt install cargo rustc
     - cargo install mdbook
     - mdbook build
     - echo "build ok"
