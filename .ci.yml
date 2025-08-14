@@ -65,6 +65,12 @@ build-job:
 unit-test:
   stage: test
   needs: []
+  before_script: 
+    - export SITE_URL=https://study-area-cn-6fb7da.code-dev.cloud/
+    - export SITE_RSS_CONTENT_DIR=src
+    - export SITE_RSS_OUT_FILE=book/rss.xml
+    - export SITE_SITE_MAP_FILE=book/sitemap.xml
+
   script:
     - echo "test start"
     - cd lib
