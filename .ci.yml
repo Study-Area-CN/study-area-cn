@@ -1,9 +1,16 @@
 stages:
   - build
   - pages
+
 build-job: 
   stage: build
   tags: [linux, docker, x86-64]
+  cache:
+    key: "$CI_COMMIT_REF_SLUG"
+    paths:
+      - $HOME/.cargo/registry
+      - $HOME/.cargo/git
+      - target
   before_script: |
     export HTTP_PROXY=$PROXY_URL
     export HTTPS_PROXY=$PROXY_URL
@@ -44,7 +51,9 @@ pages:
   script:
     - echo "pages start"
     - mkdir -p public
-    - cp -r book public
+    - cp -r book/* public/
+    - cp book/index.html public/
+    - ls public
     - echo "pages ok"
   artifacts:
     paths:
