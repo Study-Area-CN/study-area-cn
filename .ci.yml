@@ -28,7 +28,12 @@ build-job:
       deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bullseye main contrib non-free
       deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bullseye-updates main contrib non-free
     EOF
-    
+    cat << EOF | tee -a ./lib/.env
+      SITE_URL=https://study-area-cn-6fb7da.code-dev.cloud/
+      SITE_RSS_CONTENT_DIR=src
+      SITE_RSS_OUT_FILE=book/rss.xml
+      SITE_SITE_MAP_FILE=book/sitemap.xml
+    EOF
   script:
     - echo "build job start"
     - echo "mdbook build start"
@@ -52,8 +57,10 @@ build-job:
     - npm run build
     - npm run build:rss
     - cd ..
+    - pwd
     - ls -la book/rss.xml
     - echo "build ok"
+
   artifacts:
     paths:
       - "book"
