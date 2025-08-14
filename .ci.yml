@@ -4,7 +4,7 @@ stages:
 build-job: 
   stage: build
   tags: [linux, docker, x86-64]
-  image: rust
+  image: rust:latest
   script:
     - echo "build job start"
     - cargo install mdbook
