@@ -27,6 +27,7 @@ build-job:
     - apt install cargo rustc
     - cargo install mdbook
     - mdbook build
+    - ls
     - echo "build ok"
   artifacts:
     paths:
