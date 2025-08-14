@@ -5,7 +5,8 @@ build-job:
   stage: build
   tags: [linux, docker, x86-64]
   before_script: |
-
+    export HTTP_PROXY=$PROXY_URL
+    export HTTPS_PROXY=$PROXY_URL
     rm -rf /etc/apt/sources.list
     mkdir -vp ${CARGO_HOME:-$HOME/.cargo}
 
