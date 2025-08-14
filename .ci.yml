@@ -30,7 +30,7 @@ build-job:
     - echo "build ok"
   artifacts:
     paths:
-      - "book"
+      - "book/*"
     untracked: false
     when: on_success
     access: all
