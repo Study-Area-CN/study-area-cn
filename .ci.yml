@@ -44,7 +44,7 @@ pages:
   script:
     - echo "pages start"
     - mkdir -p public
-    - mv book/* public/*
+    - cp -r book public
     - echo "pages ok"
   artifacts:
     paths:
