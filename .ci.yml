@@ -14,12 +14,6 @@ build-job:
       deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bullseye main contrib non-free
       deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bullseye-updates main contrib non-free
     EOF
-    cat << EOF | tee -a ${CARGO_HOME:-$HOME/.cargo}/config.toml
-      [source.crates-io]
-      replace-with = 'mirror'
-      [source.mirror]
-      registry = "https://mirrors.tuna.tsinghua.edu.cn/git/crates.io-index.git"
-    EOF
     
   script:
     - echo "build job start"
