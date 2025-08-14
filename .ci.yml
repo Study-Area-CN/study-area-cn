@@ -1,5 +1,6 @@
 stages:
   - build
+  - test
   - pages
 
 build-job: 
@@ -61,6 +62,27 @@ build-job:
     access: all
     expire_in: 30 days
 
+unit-test:
+  stage: test
+  needs: []
+  script:
+    - echo "test start"
+    - cd lib
+    - npm config set registry https://registry.npmmirror.com
+    - npm get registry
+    - npm install 
+    - npm run test:coverage
+    - echo "test ok"
+  artifacts:
+    reports:
+      junit: lib/test-report.xml
+    paths:
+      - "lib/coverage"
+    untracked: false
+    when: on_success
+    access: all
+    expire_in: 30 days
+  
 pages:
   stage: pages
   needs:
@@ -79,3 +101,11 @@ pages:
     when: on_success
     access: all
     expire_in: 30 days
+
+include:
+  - template: Security/SAST-IaC.latest.gitlab-ci.yml
+  - template: Security/SAST.gitlab-ci.yml
+  - template: Security/Secret-Detection.gitlab-ci.yml
+
+sast:
+  stage: test

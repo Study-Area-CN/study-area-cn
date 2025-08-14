@@ -7,18 +7,19 @@ dotenv.config();
 
 const CONTENT_DIR = path.resolve(__dirname, `../../${process.env.SITE_RSS_CONTENT_DIR}`);
 const OUTPUT_FILE = path.resolve(__dirname, `../../${process.env.SITE_RSS_OUT_FILE}`);
-const SITE_URL = process.env.SITE_URL;
 
-console.log(`SITE_URL: ${SITE_URL}`);
-if (SITE_URL == undefined) {
-  console.error('请在 .env 文件或环境变量中设置 SITE_URL 环境变量');
-  exit(1);
+
+function ensureSiteUrl() {
+  if (process.env.SITE_URL == undefined) {
+    console.error('请在 .env 文件或环境变量中设置 SITE_URL 环境变量');
+    process.exit(1);
+  }
 }
 
 function getMarkdownFiles(dir: string): string[] {
   let results: string[] = [];
-  const list = fs.readdirSync(dir);
-  list.forEach((file) => {
+  const list: string[] = fs.readdirSync(dir) as string[];
+  list.forEach((file: string) => {
     const filePath = path.join(dir, file);
     const stat = fs.statSync(filePath);
     if (stat && stat.isDirectory()) {
@@ -40,23 +41,25 @@ function extractDescription(content: string): string {
   return match ? match[1].trim() : '';
 }
 
-function fileToRssItem(filePath: string): string {
+function fileToRssItem(filePath: string, contentDir: string): string {
   const content = fs.readFileSync(filePath, 'utf-8');
   const title = extractTitle(content);
   const description = extractDescription(content);
   const stat = fs.statSync(filePath);
-  const relPath = path.relative(CONTENT_DIR, filePath).replace(/\\/g, '/');
-  const url = `${SITE_URL}/${relPath.replace(/\.md$/, '.html')}`;
+  const relPath = path.relative(contentDir, filePath).replace(/\\/g, '/');
+  const url = `${process.env.SITE_URL}/${relPath.replace(/\.md$/, '.html')}`;
   const pubDate = new Date(stat.mtime).toUTCString();
 
   return `    <item>\n      <title>${title}</title>\n      <link>${url}</link>\n      <description><![CDATA[${description}]]></description>\n      <pubDate>${pubDate}</pubDate>\n      <guid>${url}</guid>\n    </item>`;
 }
 
 function generateRss(items: string[]): string {
-  return `<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0">\n  <channel>\n    <title>Study Area RSS</title>\n    <link>${SITE_URL}</link>\n    <description>最新内容订阅</description>\n${items.join('\n')}\n  </channel>\n</rss>`;
+  return `<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<rss version=\"2.0\">\n  <channel>\n    <title>Study Area RSS</title>\n    <link>${process.env.SITE_URL}</link>\n    <description>最新内容订阅</description>\n${items.join('\n')}\n  </channel>\n</rss>`;
 }
 
+
 function main() {
+  ensureSiteUrl();
   console.log('CONTENT_DIR:', CONTENT_DIR);
   const files = getMarkdownFiles(CONTENT_DIR);
   console.log('找到 Markdown 文件数量:', files.length);
@@ -65,10 +68,11 @@ function main() {
     fs.writeFileSync(OUTPUT_FILE, generateRss([]), 'utf-8');
     return;
   }
-  const items = files.map(fileToRssItem);
+  const items = files.map(file => fileToRssItem(file, CONTENT_DIR));
   const rss = generateRss(items);
   fs.writeFileSync(OUTPUT_FILE, rss, 'utf-8');
   console.log(`RSS 已生成: ${OUTPUT_FILE}`);
 }
 
-main();
+export { generateRss, extractTitle, extractDescription, getMarkdownFiles, fileToRssItem, main, ensureSiteUrl };
+// main();

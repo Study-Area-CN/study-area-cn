@@ -8,13 +8,17 @@
   "main": "dist/main.js",
   "scripts": {
     "build": "tsc",
-    "build:rss": "node dist/generate-rss.js"
+    "build:rss": "node dist/generate-rss.js",
+    "test": "vitest",
+    "test:coverage": "vitest --coverage"
   },
   "dependencies": {
     "dotenv": "^17.2.1",
     "typescript": "^5.9.2"
   },
   "devDependencies": {
-    "@types/node": "^24.2.1"
+    "@types/node": "^24.2.1",
+    "@vitest/coverage-v8": "^0.34.3",
+    "vitest": "^0.34.3"
   }
 }

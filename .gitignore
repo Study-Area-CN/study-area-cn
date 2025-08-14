@@ -9,7 +9,7 @@ node
 book
 study-area-home-action-deps
 study-area-action-deps
-
+coverage/
 # dependencies
 node_modules/
 target/
