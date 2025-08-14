@@ -19,9 +19,6 @@ build-job:
       [source.mirror]
       registry = "https://mirrors.tuna.tsinghua.edu.cn/git/crates.io-index.git"
     EOF
-
-    - export RUSTUP_DIST_SERVER=https://mirrors.tuna.tsinghua.edu.cn/rust-static
-    - export RUSTUP_UPDATE_ROOT=https://mirrors.tuna.tsinghua.edu.cn/rust-static/rustup
     
   script:
     - echo "build job start"
@@ -29,8 +26,7 @@ build-job:
     - ls -l
     - apt-get update   
     - apt install -y curl
-    - curl https://sh.rustup.rs -sSf | sh -s -- -y --default-host x86_64-unknown-linux-gnu --default-toolchain stable --profile minimal
-    
+    - curl https://sh.rustup.rs -sSf | sh -s -- -y
     - source $HOME/.cargo/env
     - rustup update stable
     - cargo --version
