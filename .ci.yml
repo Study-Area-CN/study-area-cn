@@ -58,7 +58,7 @@ build-job:
     - npm run build:rss
     - cd ..
     - pwd
-    - ls -la book/rss.xml
+    - ls -la book
     - echo "build ok"
 
   artifacts:
