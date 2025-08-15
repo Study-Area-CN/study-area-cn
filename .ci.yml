@@ -1,0 +1,128 @@
+stages:
+  - build
+  - test
+  - pages
+
+build-job: 
+  stage: build
+  tags: [linux, docker, x86-64]
+  cache:
+    key: "$CI_COMMIT_REF_SLUG"
+    paths:
+      - $HOME/.cargo/registry
+      - $HOME/.cargo/git
+      - target
+  before_script: |
+  
+    export HTTP_PROXY=$PROXY_URL
+    export HTTPS_PROXY=$PROXY_URL
+    export SITE_URL=https://study-area-cn-6fb7da.code-dev.cloud/
+    export SITE_RSS_CONTENT_DIR=src
+    export SITE_MAP_CONTENT_DIR=book
+    export SITE_RSS_OUT_FILE=book/rss.xml
+    export SITE_MAP_OUT_FILE=book/sitemap.xml
+
+    rm -rf /etc/apt/sources.list
+    mkdir -vp ${CARGO_HOME:-$HOME/.cargo}
+
+    cat << EOF | tee -a /etc/apt/sources.list
+      deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bullseye main contrib non-free
+      deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bullseye-updates main contrib non-free
+    EOF
+    cat << EOF | tee -a ./lib/.env
+      SITE_URL=https://study-area-cn-6fb7da.code-dev.cloud/
+      SITE_RSS_CONTENT_DIR=src
+      SITE_MAP_CONTENT_DIR=book
+      SITE_RSS_OUT_FILE=book/rss.xml
+      SITE_MAP_OUT_FILE=book/sitemap.xml
+    EOF
+  script:
+    - echo "build job start"
+    - echo "mdbook build start"
+    - pwd
+    - ls -l
+    - apt-get update   
+    - apt install -y curl
+    - curl https://sh.rustup.rs -sSf | sh -s -- -y
+    - source $HOME/.cargo/env
+    - rustup update stable
+    - cargo --version
+    - cargo install mdbook
+    - mdbook build
+    - echo "mdbook build ok"
+    - echo "rss build start"
+    - cd lib
+    - npm config set registry https://registry.npmmirror.com
+    - npm get registry
+    - npm install 
+    - npm run build
+    - npm run build:rss
+    - echo "rss build ok"
+    - echo "sitemap build start"
+    - npm run build:sitemap
+    - echo "sitemap build ok"
+    - cd ..
+    - ls -l book
+    - echo "build ok"
+
+  artifacts:
+    paths:
+      - "book"
+    untracked: false
+    when: on_success
+    access: all
+    expire_in: 30 days
+
+unit-test:
+  stage: test
+  needs: []
+  before_script: 
+    - export SITE_URL=https://study-area-cn-6fb7da.code-dev.cloud/
+    - export SITE_RSS_CONTENT_DIR=src
+    - export SITE_RSS_OUT_FILE=book/rss.xml
+    - export SITE_SITE_MAP_FILE=book/sitemap.xml
+
+  script:
+    - echo "test start"
+    - cd lib
+    - npm config set registry https://registry.npmmirror.com
+    - npm get registry
+    - npm install 
+    - npm run test:coverage
+    - echo "test ok"
+  artifacts:
+    reports:
+      junit: lib/test-report.xml
+    paths:
+      - "lib/coverage"
+    untracked: false
+    when: on_success
+    access: all
+    expire_in: 30 days
+  
+pages:
+  stage: pages
+  needs:
+    - build-job
+  script:
+    - echo "pages start"
+    - mkdir -p public
+    - cp -r book/* public/
+    - cp book/index.html public/
+    - ls public
+    - echo "pages ok"
+  artifacts:
+    paths:
+      - "public"
+    untracked: false
+    when: on_success
+    access: all
+    expire_in: 30 days
+
+include:
+  - template: Security/SAST-IaC.latest.gitlab-ci.yml
+  - template: Security/SAST.gitlab-ci.yml
+  - template: Security/Secret-Detection.gitlab-ci.yml
+
+sast:
+  stage: test

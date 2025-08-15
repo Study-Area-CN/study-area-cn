@@ -1,4 +1,18 @@
-book
+# idea
+/.vscode/
+/.idea/
+
+# build
+dist/
+.env
 node
+book
 study-area-home-action-deps
 study-area-action-deps
+coverage/
+# dependencies
+node_modules/
+target/
+
+# system sb macos fuck apple
+.DS_Store
