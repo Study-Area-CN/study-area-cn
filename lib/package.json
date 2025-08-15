@@ -9,6 +9,7 @@
   "scripts": {
     "build": "tsc",
     "build:rss": "node dist/generate-rss.js",
+    "build:sitemap": "node dist/generate-sitemap.js",
     "test": "vitest",
     "test:coverage": "vitest --coverage"
   },
